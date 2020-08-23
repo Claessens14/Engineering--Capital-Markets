@@ -8,66 +8,69 @@ permalink: /CapitalMarkets/
 <h1>Mapping</h1>
 <p style="color: red;">Please use Google Chrome for the best experience.</p>
 <p>
-<a href="https://www.quickpicturetools.com/en/combine_images/">image joiner</a><br>
-<a href="https://postimages.org">image hosting</a><br>
-<a href="https://htmlcheatsheet.com">cheat sheet</a>
+  <a href="https://www.quickpicturetools.com/en/combine_images/">image joiner</a><br>
+  <a href="https://postimages.org">image hosting</a><br>
+  <a href="https://htmlcheatsheet.com">cheat sheet</a>
 </p>
 <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
-  <link rel='stylesheet' href='https://gojs.net/latest/extensions/DataInspector.css' />
-  <script src="https://gojs.net/latest/extensions/DataInspector.js"></script>
-  <script src="https://gojs.net/latest/extensions/GuidedDraggingTool.js"></script>
+<link rel='stylesheet' href='https://gojs.net/latest/extensions/DataInspector.css' />
+<script src="https://gojs.net/latest/extensions/DataInspector.js"></script>
+<script src="https://gojs.net/latest/extensions/GuidedDraggingTool.js"></script>
   
-  <!-- <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<!-- <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>      
-  <!-- <link rel="stylesheet" type="text/css" href="/assets/css/popup.css"> --> 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
-  <!-- <link rel="stylesheet" href="{{ site.baseurl }}/assets/popup_assets_cp/stylesheets/magnific-popup.css">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="{{ site.baseurl }}/assets/popup_assets_cp/javascripts/magnific-popup.js"></script> -->
-   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>    
 
+<!-- <link rel="stylesheet" type="text/css" href="/assets/css/popup.css"> --> 
+
+<!-- <link rel="stylesheet" href="{{ site.baseurl }}/assets/popup_assets_cp/stylesheets/magnific-popup.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{{ site.baseurl }}/assets/popup_assets_cp/javascripts/magnific-popup.js"></script> -->
 
 <div id="sample">
-  <div class="mapping" style="width: 100%; display: flex; justify-content: space-between">
-    <!-- display: none; -->
-    <div id="myPaletteDiv" style="width: 100px; margin-right: 2px; background-color: #565e70;"></div>
-    <!-- <div id="myDiagramDiv" style="flex-grow: 1; height: 750px; background-color: #cdcfd3;"></div> -->
-    <div id="myDiagramDiv" style="flex-grow: 1; height: 750px;   background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;  background-image: url({{"/img/" | prepend: site.baseurl | append : page.image}})"></div>
-  </div>
-    </span>
-      <p><button id="zoomToFit" class="w3-button w3-round w3-indigo w3-small">Zoom to Fit</button> </p>
+  <span>
+    <div class="mapping" style="width: 100%; display: flex; justify-content: space-between">
+      <!-- display: none; -->
+      <div id="myPaletteDiv" style="width: 100px; margin-right: 2px; background-color: #565e70;"></div>
+
+      <!-- <div id="myDiagramDiv" style="flex-grow: 1; width: 100%; background-size: 100%; height: 750px; background-color: #cdcfd3;"></div> -->
+      <!-- <div id="myDiagramDiv" style="flex-grow: 1; height: 750px;   background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;  background-image: url({{"/img/" | prepend: site.baseurl | append : page.image}})"></div>
+    </div> -->
+    <div id="map" class="mapDiagram">
+      <div id="myDiagramDiv" class="mapDiagram" style="width: 0px; margin-right: 2px; background-color: #565e70;"></div>></div>
+    </div>
+  </span>
+  <p>
+    <button id="zoomToFit" class="w3-button w3-round w3-indigo w3-small">Zoom to Fit</button> </p>
     <span style="display: inline-block; vertical-align: top;">
       Selected Part:<br>
-      <div id="myInspectorDiv" class="inspector"> </div><br>
+      <div id="myInspectorDiv" class="inspector"> </div>
+      <br>
       <!-- First Node's data:<br>
       <div id="myInspectorDiv2" class="inspector"> </div><br>
       Model.modelData:<br>
       <div id="myInspectorDiv3" class="inspector"> </div><br> -->
     </span>
-    <div>
   <p>
-
-
+<div>
   <!-- <p><button class="w3-button w3-round w3-indigo w3-small">Indigo</button></p>
     <p><button class="w3-button w3-round w3-indigo w3-small" disabled>Indigo</button></p> -->
   <button id="SaveButton" class="w3-button w3-round w3-indigo w3-small" onclick="save()">Save</button>
-  
   <button class="w3-button w3-round w3-indigo w3-small" onclick="load()" >Load</button>
   Diagram Model saved in JSON format:
   <!-- <textarea id="mySavedModel" style="width:100%;height:600px;background-color:black;color:white;">
   </textarea> -->
   <div id="editor" style="width:100%;height:600px">
     function foo(items) {
-        var x = "All this is syntax highlighted";
-        return x;
-    }
-</div>
-
+      var x = "All this is syntax highlighted";
+      return x;
+      }
+  </div>
   <button class="w3-button w3-round w3-indigo w3-small" onclick="printDiagram()">Print Diagram Using SVG</button>
 </div>
 
@@ -76,15 +79,13 @@ permalink: /CapitalMarkets/
   var myDiagram;
   var myPalette;
   $(document).ready(function() {
-
     window.onbeforeunload = function(){
       return 'Are you sure you want to leave, changes will be lost unless saved to JSON?';
     };
 
     document.getElementById('zoomToFit').addEventListener('click', function() {
-        myDiagram.commandHandler.zoomToFit();
-      });
-
+      myDiagram.commandHandler.zoomToFit();
+    });
 
     function init() {
       //if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
@@ -102,9 +103,29 @@ permalink: /CapitalMarkets/
             "draggingTool.guidelineWidth": 0.7,
             // allow Ctrl-G to call groupSelection()
             "commandHandler.archetypeGroupData": { text: "Group", isGroup: true, color: "#566B70" },
-            "undoManager.isEnabled": true  // enable undo & redo
-          });
+            "undoManager.isEnabled": true,  // enable undo & redo
 
+            "dragSelectingTool.isEnabled": false,
+            "animationManager.isEnabled": false,
+            scrollMode: go.Diagram.InfiniteScroll,
+            allowZoom: false,
+            allowHorizontalScroll: false,
+            allowVerticalScroll: false,
+            hasHorizontalScrollbar: false,
+            hasVerticalScrollbar: false,
+            initialPosition: new go.Point(0, 0),
+            padding: 0,
+            "toolManager.hoverDelay": 100  // how quickly tooltips are shown
+          }
+        );
+
+      var toolTipTemplate =
+      Go("ToolTip",
+        Go(go.TextBlock, { margin: 4 },
+          new go.Binding("text", "", function(d) {
+            return d.key + "\nlocation: [" + d.latlong.join(", ") + "]"
+          }))
+      );
 
       // when the document is modified, add a "*" to the title and enable the "Save" button
       myDiagram.addDiagramListener("Modified", function(e) {
@@ -119,7 +140,6 @@ permalink: /CapitalMarkets/
       });
 
       // helper definitions for node templates
-
       function nodeStyle() {
         return [
           // The Node.location comes from the "loc" property of the node data,
@@ -165,7 +185,8 @@ permalink: /CapitalMarkets/
             mouseLeave: function(e, port) {
               port.fill = "transparent";
             }
-          });
+          }
+        );
       }
 
       function textStyle() {
@@ -176,7 +197,6 @@ permalink: /CapitalMarkets/
       }
 
       // define the Node templates for regular nodes
-
       myDiagram.nodeTemplateMap.add("",  // the default category
         Go(go.Node, "Table", nodeStyle(),
           // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
@@ -397,7 +417,6 @@ permalink: /CapitalMarkets/
         )
       );
 
-
       // replace the default Link template in the linkTemplateMap
       myDiagram.linkTemplate =
         Go(go.Link,  // the whole link panel
@@ -438,39 +457,39 @@ permalink: /CapitalMarkets/
           )
         );
 
-        myDiagram.groupTemplate =
-          Go(go.Group, "Auto",
-            {
-              layout: Go(go.GridLayout,
-                { comparer: go.GridLayout.smartComparer,
-                  wrappingColumn: 3 })
-              // other properties are set by the layout function, defined below
-            },
-            Go(go.Shape, "Rectangle",
-              { fill: "#8b8f99", stroke: "black", strokeWidth: 2 },
-              new go.Binding("fill"), //need
-              new go.Binding("stroke", "edge_stroke")), //need
-            Go(go.Panel, "Vertical",
-              { defaultAlignment: go.Spot.Left, margin: 2 },
-              Go(go.Panel, "Horizontal",
-                { defaultAlignment: go.Spot.Top },
-                // the SubGraphExpanderButton is a panel that functions as a button to expand or collapse the subGraph
-                Go("SubGraphExpanderButton"),
-                Go(go.TextBlock,
-                  { font: "Bold 10px Sans-Serif", stroke: "white", margin: 4, background: "white", wrap: go.TextBlock.WrapFit,
-                  editable: true },
-                  new go.Binding("stroke", "font_stroke"), //need
-                  new go.Binding("text").makeTwoWay())  //need
-              ),
-              // create a placeholder to represent the area where the contents of the group are
-              Go(go.Placeholder,
-                { padding: new go.Margin(0, 5) })
-            ),  // end Vertical Panel
-            makePort("T", go.Spot.Top, go.Spot.TopSide, true, true),
-            makePort("L", go.Spot.Left, go.Spot.Left, true, true),
-            makePort("R", go.Spot.Right, go.Spot.Right, true, true),
-            makePort("B", go.Spot.Bottom, go.Spot.Bottom, true, true)
-          );  // end Group
+      myDiagram.groupTemplate =
+        Go(go.Group, "Auto",
+          {
+            layout: Go(go.GridLayout,
+              { comparer: go.GridLayout.smartComparer,
+                wrappingColumn: 3 })
+            // other properties are set by the layout function, defined below
+          },
+          Go(go.Shape, "Rectangle",
+            { fill: "#8b8f99", stroke: "black", strokeWidth: 2 },
+            new go.Binding("fill"), //need
+            new go.Binding("stroke", "edge_stroke")), //need
+          Go(go.Panel, "Vertical",
+            { defaultAlignment: go.Spot.Left, margin: 2 },
+            Go(go.Panel, "Horizontal",
+              { defaultAlignment: go.Spot.Top },
+              // the SubGraphExpanderButton is a panel that functions as a button to expand or collapse the subGraph
+              Go("SubGraphExpanderButton"),
+              Go(go.TextBlock,
+                { font: "Bold 10px Sans-Serif", stroke: "white", margin: 4, background: "white", wrap: go.TextBlock.WrapFit,
+                editable: true },
+                new go.Binding("stroke", "font_stroke"), //need
+                new go.Binding("text").makeTwoWay())  //need
+            ),
+            // create a placeholder to represent the area where the contents of the group are
+            Go(go.Placeholder,
+              { padding: new go.Margin(0, 5) })
+          ),  // end Vertical Panel
+          makePort("T", go.Spot.Top, go.Spot.TopSide, true, true),
+          makePort("L", go.Spot.Left, go.Spot.Left, true, true),
+          makePort("R", go.Spot.Right, go.Spot.Right, true, true),
+          makePort("B", go.Spot.Bottom, go.Spot.Bottom, true, true)
+        );  // end Group
 
       // Make link labels visible if coming out of a "conditional" node.
       // This listener is called by the "LinkDrawn" and "LinkRelinked" DiagramEvents.
@@ -505,7 +524,8 @@ permalink: /CapitalMarkets/
               { category: "VideoBlock", source: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbanner2.kisspng.com%2F20180410%2Fjfe%2Fkisspng-youtube-play-button-computer-icons-clip-art-youtube-5acd2517807855.3866683515233938155262.jpg&f=1&nofb=1", video_source:"", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "Comment", text: "Comment", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" }
             ])
-          });
+          }
+        );
 
       // This is a re-implementation of the default animation, except it fades in from downwards, instead of upwards.
       function animateFadeDown(e) {
@@ -519,58 +539,27 @@ permalink: /CapitalMarkets/
         animation.add(diagram, 'opacity', 0, 1);
         animation.start();
       }
-      
-
-
-
-    function shiftGroups() {  // define a function named "shiftNode" callable by button.onclick
-      // all model changes should happen in a transaction
-      
-      // myDiagram.commit(function(d) {
-      //   var nodes = d.model.nodeDataArray;  // get the first node data
-      //   for (var i = 0; i < nodes.length; i++) {
-      //     if (nodes[i] && nodes[i]['isGroup'] == true) {
-      //       var node = d.findNodeForData(nodes[i]);   // find the corresponding Node
-      //       var p = node.location.copy();  // make a copy of the location, a Point
-      //       p.x -= 10;
-      //       p.y -= 10;
-      //       //if (p.x > 200) p.x = 0;
-      //       // changing the Node.location also changes the data.loc property due to TwoWay binding
-      //       node.location = p;
-      //     }
-      //   }
-      //   // show the updated location held by the "loc" property of the node data
-      // }, "shift node");
-      myDiagram.commit(function(d) {
-        var nodes = d.model.nodeDataArray;  // get the first node data
-        for (var i = 0; i < nodes.length; i++) {
-          if (nodes[i] && nodes[i]['isGroup'] == true) {
-            var node = d.findNodeForData(nodes[i]);   // find the corresponding Node
-            var p = node.location.copy();  // make a copy of the location, a Point
-            p.x += 10;
-            p.y += 10;
-            //if (p.x > 200) p.x = 0;
-            // changing the Node.location also changes the data.loc property due to TwoWay binding
-            node.location = p;
-
-            // p.x -= 15;
-            // p.y -= 15;
-            // //if (p.x > 200) p.x = 0;
-            // // changing the Node.location also changes the data.loc property due to TwoWay binding
-            // node.location = p;
-
-
-          }
-        }
-        // show the updated location held by the "loc" property of the node data
-      }, "shift node");
-
-    }
-
-
-    function initLoad() {
-
         
+      function shiftGroups() {  // define a function named "shiftNode" callable by button.onclick
+        // all model changes should happen in a transaction
+        myDiagram.commit(function(d) {
+          var nodes = d.model.nodeDataArray;  // get the first node data
+          for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i] && nodes[i]['isGroup'] == true) {
+              var node = d.findNodeForData(nodes[i]);   // find the corresponding Node
+              var p = node.location.copy();  // make a copy of the location, a Point
+              p.x += 10;
+              p.y += 10;
+              // changing the Node.location also changes the data.loc property due to TwoWay binding
+              node.location = p;
+            }
+          }
+          // show the updated location held by the "loc" property of the node data
+        }, "shift node");
+      }
+
+      /* Load the Ace editor & shirt noads */
+      function initLoad() {
         var json = {};
         myDiagram.model = go.Model.fromJson(json);
         var editor = ace.edit("editor");
@@ -580,12 +569,10 @@ permalink: /CapitalMarkets/
         // document.getElementById("mySavedModel").value = JSON.stringify(json, null, 2);
         myDiagram.commandHandler.zoomToFit();
         myDiagram.select(myDiagram.nodes.first());
-        shiftGroups();  // initialize everything
-      //});
-    }
- 
-    initLoad()
-  } // end init
+        //shiftGroups();  // initialize everything
+      }
+      initLoad()
+    } //   ||=========  END INIT ========||
     init();
 
     // print the diagram by opening a new window holding SVG images of the diagram contents for each page
@@ -607,11 +594,8 @@ permalink: /CapitalMarkets/
       }
       setTimeout(function() { svgWindow.print(); }, 1);
     }
-
-
-
-
-    
+ 
+    /*  Inspector  */
     var inspector = new Inspector('myInspectorDiv', myDiagram, {
       // allows for multiple nodes to be inspected at once
       multipleSelection: true,
@@ -648,14 +632,18 @@ permalink: /CapitalMarkets/
         }
       }
     });
-  });
+  });//  ||======  END DOCUMENT.READY()  ======||
 
+
+  //  =====   STATIC BUTTON FUNCTIONS   ====== 
+
+  /* Load Button Function */
   function load() {
     //myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
     myDiagram.model = go.Model.fromJson(editor.getValue());
   }
 
-  // Show the diagram's model in JSON format that the user may edit
+  /* Show the diagram's model in JSON format that the user may edit */
   function save() {
     //document.getElementById("mySavedModel").value = myDiagram.model.toJson();
     editor.setValue(myDiagram.model.toJson());
@@ -675,16 +663,16 @@ permalink: /CapitalMarkets/
     var today = curHour + "-" + curMinute + "-" + curSeconds + curMeridiem + "_" + dayOfWeek + "_" + dayOfMonth + "_of_" + curMonth + "_" + curYear;
     download(today + '.json', myDiagram.model.toJson());
   }
+
+  /* DownLoad Json File 
+    - called by save() function */
   function download(filename, text) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
-
     element.style.display = 'none';
     document.body.appendChild(element);
-
     element.click();
-
     document.body.removeChild(element);
   }
 

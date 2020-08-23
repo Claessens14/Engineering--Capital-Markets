@@ -1,12 +1,50 @@
----
-layout: default
----
 
+<!DOCTYPE html>
+<html lang="en">
 
-<article>
+{% include head.html %}
 
+<script>
+    function backgroundMap() {
+        /*
+          Leaflet init
+        */
+        var defaultZoom = 6;
+        var mapOrigin = [50.02185841773444, 0.15380859375];
+        myLeafletMap = L.map("map", {}).setView(mapOrigin, defaultZoom);
+        L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          maxZoom: 18,
+          tileSize: 512,
+          zoomOffset: -1,
+          id: "mapbox/dark-v10",
+          accessToken: "pk.eyJ1IjoiZ29qcyIsImEiOiJjaXppcnNkbDgwMzQ3MnFsNDFnY2phb2QwIn0.7AuVKrWdxQnJxa_W7qC3-w"
+        }).addTo(myLeafletMap);
+  
+        myLeafletMap.on("move", function(e) {
+          myUpdatingGoJS = true;
+          myDiagram.updateAllTargetBindings("latlong"); // Without virtualization this can be slow if there are many nodes
+          myDiagram.redraw(); // At the expense of performance, this will make sure GoJS positions are updated immediately
+          myUpdatingGoJS = false;
+        });
+        var myUpdatingGoJS = false;  // prevent modifying data.latlong properties upon Leaflet "move" events
+    }
+</script>
 
-    {{ content }}
+<body onload="backgroundMap()">>
 
-    </article> 
-    
+  {% if site.google-analytics %}
+    {% include google-analytics.html %}
+  {% endif %}
+  {% include loader.html %}
+  {% include header.html %}
+
+      {{ content }}
+
+  {% include footer.html %}
+  {% include javascripts.html %}
+  <script src="{{ site.baseurl }}/assets/popup_assets_cp/javascripts/magnific-popup.js"></script>
+
+</body>
+
+</html>

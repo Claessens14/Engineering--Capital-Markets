@@ -14,9 +14,7 @@
   <!-- Ionicons -->
   <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
 
-
-
-<!---------- WHAT I ADDED  ---------->
+  <!---------- WHAT I ADDED  ---------->
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Source+Code+Pro">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"> -->
@@ -25,30 +23,42 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
   </script> -->
 
-<!-- Magnific Popup core CSS file -->
-<!-- <link rel="stylesheet" href="{{ site.baseurl }}/assets/popup_assets_cp/stylesheets/magnific-popup.css"> -->
+  <!---------- Background Interactive Map  ---------->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet-src.js"></script>
+  <!-- Magnific Popup core CSS file -->
+  <!-- <link rel="stylesheet" href="{{ site.baseurl }}/assets/popup_assets_cp/stylesheets/magnific-popup.css"> -->
 
-<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
-<script type="text/javascript" 
-        src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <link rel="stylesheet" href="{{ site.baseurl }}/assets/popup_assets_cp/stylesheets/magnific-popup.css">
-<!-- Magnific Popup core JS file -->
+  <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+  <script type="text/javascript" 
+    src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/popup_assets_cp/stylesheets/magnific-popup.css">
+  <!-- Magnific Popup core JS file -->
 
-<!-- <script src="{{ site.baseurl }}/assets/popup_assets_cp/javascripts/magnific-popup.js"></script> -->
-<!-- <script src="{{ site.baseurl }}/assets/popup_assets_cp/javascripts/magnific-popup.js"></script> -->
+  <!-- <script src="{{ site.baseurl }}/assets/popup_assets_cp/javascripts/magnific-popup.js"></script> -->
+  <!-- <script src="{{ site.baseurl }}/assets/popup_assets_cp/javascripts/magnific-popup.js"></script> -->
 
-<!-- Button Styling -->
-<!-- <link rel="stylesheet" href="{{ site.github.url }}/assets/css/buttons.css"> -->
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!-- Button Styling -->
+  <!-- <link rel="stylesheet" href="{{ site.github.url }}/assets/css/buttons.css"> -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<!----------                  ---------->
-
-
+  <!----------                  ---------->
   <style>
-  {% capture include_to_scssify %}
-    {% include main.scss %}
-  {% endcapture %}
-  {{ include_to_scssify | scssify }}
+    {% capture include_to_scssify %}
+      {% include main.scss %}
+    {% endcapture %}
+    {{ include_to_scssify | scssify }}
+
+
+    .mapDiagram {
+        border: solid 1px black;
+        width: 100%;
+        height: 800px;
+      }
+
+    #myDiagramDiv {
+      z-index: 701;
+    }
   </style>
 </head>
