@@ -4,6 +4,10 @@
 
 {% include head.html %}
 
+
+{{ content }}
+
+
 <script>
     function backgroundMap() {
         /*
@@ -43,10 +47,92 @@
   {% include loader.html %}
   {% include header.html %}
 
-      {{ content }}
+      
+
+
+  <h1>Mapping</h1>
+  <p style="color: red;">Please use Google Chrome for the best experience.</p>
+  <p>
+    <a href="https://www.quickpicturetools.com/en/combine_images/">image joiner</a><br>
+    <a href="https://postimages.org">image hosting</a><br>
+    <a href="https://htmlcheatsheet.com">cheat sheet</a>
+  </p>
+  <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
+  <link rel='stylesheet' href='https://gojs.net/latest/extensions/DataInspector.css' />
+  <script src="https://gojs.net/latest/extensions/DataInspector.js"></script>
+  <script src="https://gojs.net/latest/extensions/GuidedDraggingTool.js"></script>
+    
+  <!-- <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+  <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+  <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>    
+  
+  <!-- <link rel="stylesheet" type="text/css" href="/assets/css/popup.css"> --> 
+  
+  <!-- <link rel="stylesheet" href="{{ site.baseurl }}/assets/popup_assets_cp/stylesheets/magnific-popup.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="{{ site.baseurl }}/assets/popup_assets_cp/javascripts/magnific-popup.js"></script> -->
+  
+    <div id="sample">
+    <span>
+        <div class="mapping" style="width: 100%; display: flex; justify-content: space-between">
+        <!-- display: none; -->
+        <div id="myPaletteDiv" style="width: 100px; margin-right: 2px; background-color: #565e70;"></div>
+
+        <!-- <div id="myDiagramDiv" style="flex-grow: 1; width: 100%; background-size: 100%; height: 750px; background-color: #cdcfd3;"></div> -->
+        <!-- <div id="myDiagramDiv" style="flex-grow: 1; height: 750px;   background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;  background-image: url({{"/img/" | prepend: site.baseurl | append : page.image}})"></div>
+        </div> -->
+        <div id="map" class="mapDiagram">
+            <div id="myDiagramDiv" class="mapDiagram" style="width: 0px; margin-right: 2px; background-color: #565e70;"></div>
+        </div>
+        </div>
+    </span>
+
+    <p>
+        <button id="zoomToFit" class="w3-button w3-round w3-indigo w3-small">Zoom to Fit</button>
+    </p>
+
+    <span style="display: inline-block; vertical-align: top;">
+        Selected Part:
+        <br>
+    <div id="myInspectorDiv" class="inspector"> </div>
+        
+        <!-- First Node's data:<br>
+        <div id="myInspectorDiv2" class="inspector"> </div><br>
+        Model.modelData:<br>
+        <div id="myInspectorDiv3" class="inspector"> </div><br> -->
+    </span>
+    <br>
+    <!-- <p><button class="w3-button w3-round w3-indigo w3-small">Indigo</button></p>
+        <p><button class="w3-button w3-round w3-indigo w3-small" disabled>Indigo</button></p> -->
+    <button id="SaveButton" class="w3-button w3-round w3-indigo w3-small" onclick="save()">Save</button>
+    <button class="w3-button w3-round w3-indigo w3-small" onclick="load()" >Load</button>
+    Diagram Model saved in JSON format:
+    <!-- <textarea id="mySavedModel" style="width:100%;height:600px;background-color:black;color:white;">
+    </textarea> -->
+    <div id="editor" style="width:100%;height:600px">
+        function foo(items) {
+        var x = "All this is syntax highlighted";
+        return x;
+        }
+    </div>
+    <button class="w3-button w3-round w3-indigo w3-small" onclick="printDiagram()">Print Diagram Using SVG</button>
+    </div>
+
+
+
+
+
 
   {% include footer.html %}
   {% include javascripts.html %}
+
+
+
   <script src="{{ site.baseurl }}/assets/popup_assets_cp/javascripts/magnific-popup.js"></script>
 
 </body>

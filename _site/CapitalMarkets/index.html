@@ -67,201 +67,13 @@
 </head>
 
 
-<script>
-    function backgroundMap() {
-        /*
-          Leaflet init
-        */
-        var defaultZoom = 6;
-        var mapOrigin = [50.02185841773444, 0.15380859375];
-        myLeafletMap = L.map("map", {}).setView(mapOrigin, defaultZoom);
-        L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-          maxZoom: 18,
-          tileSize: 512,
-          zoomOffset: -1,
-          id: "mapbox/dark-v10",
-          accessToken: "pk.eyJ1IjoiZ29qcyIsImEiOiJjaXppcnNkbDgwMzQ3MnFsNDFnY2phb2QwIn0.7AuVKrWdxQnJxa_W7qC3-w"
-        }).addTo(myLeafletMap);
-  
-        myLeafletMap.on("move", function(e) {
-          myUpdatingGoJS = true;
-          myDiagram.updateAllTargetBindings("latlong"); // Without virtualization this can be slow if there are many nodes
-          myDiagram.redraw(); // At the expense of performance, this will make sure GoJS positions are updated immediately
-          myUpdatingGoJS = false;
-        });
-        var myUpdatingGoJS = false;  // prevent modifying data.latlong properties upon Leaflet "move" events
-    }
-</script>
-
-
-
-
-
-<body onload="backgroundMap()">
-
-  
-  <div class="preloader">
-  <div class="loader">
-    <span>Loading</span>
-  </div>
-</div> <!-- /.loader -->
-  <header class="header">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="header-box">
-          <div class="logo-title">
-            <a href="/galada/" class="logo-text">Galada</a>
-          </div>
-
-          <nav class="nav-menu">
-            <i class="menu-close ion ion-ios-close"></i>
-            <ul class="menu-list">
-              <li class="menu-item"><a href="/galada/" class="menu-link">Home</a></li>
-              
-                
-              
-                
-              
-              <li class="menu-item"><a href="/galada/CapitalMarkets/" class="menu-link">CapitalMarkets</a></li>
-              
-                
-              
-                
-              
-              <li class="menu-item"><a href="/galada/about/" class="menu-link">About</a></li>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-              <li class="menu-item"><a href="/galada/styleguide/" class="menu-link">Style Guide</a></li>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-            </ul>
-          </nav>
-          <div class="nav-buttons">
-            <i class="menu-button d-hide ion ion-ios-menu"></i>
-            <i class="search-button ion ion-ios-search"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="search">
-    <div class="search-box">
-      <i class="search-close-button ion ion-ios-close"></i>
-      <label for="js-search-input" class="screen-reader-text"></label>
-      <input type="text" id="js-search-input" class="search-text" autocomplete="off" placeholder="Search Something...">
-      <ol id="js-results-container" class="search-results-list"></ol>
-    </div>
-  </div>
-</header> <!-- /.header -->
-
-
-      <h1>Mapping</h1>
-<p style="color: red;">Please use Google Chrome for the best experience.</p>
-<p>
-  <a href="https://www.quickpicturetools.com/en/combine_images/">image joiner</a><br>
-  <a href="https://postimages.org">image hosting</a><br>
-  <a href="https://htmlcheatsheet.com">cheat sheet</a>
-</p>
-<script src="https://unpkg.com/gojs/release/go-debug.js"></script>
-<link rel='stylesheet' href='https://gojs.net/latest/extensions/DataInspector.css' />
-<script src="https://gojs.net/latest/extensions/DataInspector.js"></script>
-<script src="https://gojs.net/latest/extensions/GuidedDraggingTool.js"></script>
-  
-<!-- <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
-<script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>    
-
-<!-- <link rel="stylesheet" type="text/css" href="/assets/css/popup.css"> --> 
-
-<!-- <link rel="stylesheet" href="/galada/assets/popup_assets_cp/stylesheets/magnific-popup.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="/galada/assets/popup_assets_cp/javascripts/magnific-popup.js"></script> -->
-
-<div id="sample">
-  <span>
-    <div class="mapping" style="width: 100%; display: flex; justify-content: space-between">
-      <!-- display: none; -->
-      <div id="myPaletteDiv" style="width: 100px; margin-right: 2px; background-color: #565e70;"></div>
-
-      <!-- <div id="myDiagramDiv" style="flex-grow: 1; width: 100%; background-size: 100%; height: 750px; background-color: #cdcfd3;"></div> -->
-      <!-- <div id="myDiagramDiv" style="flex-grow: 1; height: 750px;   background-repeat: no-repeat;
-      background-size: 100%;
-      background-position: center;  background-image: url(/galada/img/vector-world-map-v2.2-blackedout.jpeg)"></div>
-      </div> -->
-      <div id="map" class="mapDiagram">
-        <div id="myDiagramDiv" class="mapDiagram" style="width: 0px; margin-right: 2px; background-color: #565e70;"></div>
-      </div>
-    </div>
-  </span>
-
-  <p>
-    <button id="zoomToFit" class="w3-button w3-round w3-indigo w3-small">Zoom to Fit</button>
-  </p>
-
-  <span style="display: inline-block; vertical-align: top;">
-    Selected Part:
-    <br>
-  <div id="myInspectorDiv" class="inspector"> </div>
-    
-      <!-- First Node's data:<br>
-      <div id="myInspectorDiv2" class="inspector"> </div><br>
-      Model.modelData:<br>
-      <div id="myInspectorDiv3" class="inspector"> </div><br> -->
-  </span>
-  <br>
-  <!-- <p><button class="w3-button w3-round w3-indigo w3-small">Indigo</button></p>
-    <p><button class="w3-button w3-round w3-indigo w3-small" disabled>Indigo</button></p> -->
-  <button id="SaveButton" class="w3-button w3-round w3-indigo w3-small" onclick="save()">Save</button>
-  <button class="w3-button w3-round w3-indigo w3-small" onclick="load()" >Load</button>
-  Diagram Model saved in JSON format:
-  <!-- <textarea id="mySavedModel" style="width:100%;height:600px;background-color:black;color:white;">
-  </textarea> -->
-  <div id="editor" style="width:100%;height:600px">
-    function foo(items) {
-      var x = "All this is syntax highlighted";
-      return x;
-      }
-  </div>
-  <button class="w3-button w3-round w3-indigo w3-small" onclick="printDiagram()">Print Diagram Using SVG</button>
-</div>
-
 
 <script>
-  var editor = ace.edit("editor");
+  var editor;
   var myDiagram;
   var myPalette;
   $(document).ready(function() {
+    editor = ace.edit("editor");
     window.onbeforeunload = function(){
       return 'Are you sure you want to leave, changes will be lost unless saved to JSON?';
     };
@@ -861,6 +673,204 @@
 
 </script>
 
+
+<script>
+    function backgroundMap() {
+        /*
+          Leaflet init
+        */
+        var defaultZoom = 6;
+        var mapOrigin = [50.02185841773444, 0.15380859375];
+        myLeafletMap = L.map("map", {}).setView(mapOrigin, defaultZoom);
+        L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          maxZoom: 18,
+          tileSize: 512,
+          zoomOffset: -1,
+          id: "mapbox/dark-v10",
+          accessToken: "pk.eyJ1IjoiZ29qcyIsImEiOiJjaXppcnNkbDgwMzQ3MnFsNDFnY2phb2QwIn0.7AuVKrWdxQnJxa_W7qC3-w"
+        }).addTo(myLeafletMap);
+  
+        myLeafletMap.on("move", function(e) {
+          myUpdatingGoJS = true;
+          myDiagram.updateAllTargetBindings("latlong"); // Without virtualization this can be slow if there are many nodes
+          myDiagram.redraw(); // At the expense of performance, this will make sure GoJS positions are updated immediately
+          myUpdatingGoJS = false;
+        });
+        var myUpdatingGoJS = false;  // prevent modifying data.latlong properties upon Leaflet "move" events
+    }
+</script>
+
+
+
+
+
+<body onload="backgroundMap()">
+
+  
+  <div class="preloader">
+  <div class="loader">
+    <span>Loading</span>
+  </div>
+</div> <!-- /.loader -->
+  <header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="header-box">
+          <div class="logo-title">
+            <a href="/galada/" class="logo-text">Galada</a>
+          </div>
+
+          <nav class="nav-menu">
+            <i class="menu-close ion ion-ios-close"></i>
+            <ul class="menu-list">
+              <li class="menu-item"><a href="/galada/" class="menu-link">Home</a></li>
+              
+                
+              
+                
+              
+              <li class="menu-item"><a href="/galada/CapitalMarkets/" class="menu-link">CapitalMarkets</a></li>
+              
+                
+              
+                
+              
+              <li class="menu-item"><a href="/galada/about/" class="menu-link">About</a></li>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+              <li class="menu-item"><a href="/galada/styleguide/" class="menu-link">Style Guide</a></li>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+            </ul>
+          </nav>
+          <div class="nav-buttons">
+            <i class="menu-button d-hide ion ion-ios-menu"></i>
+            <i class="search-button ion ion-ios-search"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="search">
+    <div class="search-box">
+      <i class="search-close-button ion ion-ios-close"></i>
+      <label for="js-search-input" class="screen-reader-text"></label>
+      <input type="text" id="js-search-input" class="search-text" autocomplete="off" placeholder="Search Something...">
+      <ol id="js-results-container" class="search-results-list"></ol>
+    </div>
+  </div>
+</header> <!-- /.header -->
+
+
+      
+
+
+  <h1>Mapping</h1>
+  <p style="color: red;">Please use Google Chrome for the best experience.</p>
+  <p>
+    <a href="https://www.quickpicturetools.com/en/combine_images/">image joiner</a><br>
+    <a href="https://postimages.org">image hosting</a><br>
+    <a href="https://htmlcheatsheet.com">cheat sheet</a>
+  </p>
+  <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
+  <link rel='stylesheet' href='https://gojs.net/latest/extensions/DataInspector.css' />
+  <script src="https://gojs.net/latest/extensions/DataInspector.js"></script>
+  <script src="https://gojs.net/latest/extensions/GuidedDraggingTool.js"></script>
+    
+  <!-- <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+  <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+  <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>    
+  
+  <!-- <link rel="stylesheet" type="text/css" href="/assets/css/popup.css"> --> 
+  
+  <!-- <link rel="stylesheet" href="/galada/assets/popup_assets_cp/stylesheets/magnific-popup.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/galada/assets/popup_assets_cp/javascripts/magnific-popup.js"></script> -->
+  
+    <div id="sample">
+    <span>
+        <div class="mapping" style="width: 100%; display: flex; justify-content: space-between">
+        <!-- display: none; -->
+        <div id="myPaletteDiv" style="width: 100px; margin-right: 2px; background-color: #565e70;"></div>
+
+        <!-- <div id="myDiagramDiv" style="flex-grow: 1; width: 100%; background-size: 100%; height: 750px; background-color: #cdcfd3;"></div> -->
+        <!-- <div id="myDiagramDiv" style="flex-grow: 1; height: 750px;   background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;  background-image: url(/galada/img/vector-world-map-v2.2-blackedout.jpeg)"></div>
+        </div> -->
+        <div id="map" class="mapDiagram">
+            <div id="myDiagramDiv" class="mapDiagram" style="width: 0px; margin-right: 2px; background-color: #565e70;"></div>
+        </div>
+        </div>
+    </span>
+
+    <p>
+        <button id="zoomToFit" class="w3-button w3-round w3-indigo w3-small">Zoom to Fit</button>
+    </p>
+
+    <span style="display: inline-block; vertical-align: top;">
+        Selected Part:
+        <br>
+    <div id="myInspectorDiv" class="inspector"> </div>
+        
+        <!-- First Node's data:<br>
+        <div id="myInspectorDiv2" class="inspector"> </div><br>
+        Model.modelData:<br>
+        <div id="myInspectorDiv3" class="inspector"> </div><br> -->
+    </span>
+    <br>
+    <!-- <p><button class="w3-button w3-round w3-indigo w3-small">Indigo</button></p>
+        <p><button class="w3-button w3-round w3-indigo w3-small" disabled>Indigo</button></p> -->
+    <button id="SaveButton" class="w3-button w3-round w3-indigo w3-small" onclick="save()">Save</button>
+    <button class="w3-button w3-round w3-indigo w3-small" onclick="load()" >Load</button>
+    Diagram Model saved in JSON format:
+    <!-- <textarea id="mySavedModel" style="width:100%;height:600px;background-color:black;color:white;">
+    </textarea> -->
+    <div id="editor" style="width:100%;height:600px">
+        function foo(items) {
+        var x = "All this is syntax highlighted";
+        return x;
+        }
+    </div>
+    <button class="w3-button w3-round w3-indigo w3-small" onclick="printDiagram()">Print Diagram Using SVG</button>
+    </div>
+
+
+
+
+
+
   <footer class="footer">
   <div class="container">
     <div class="row">
@@ -915,6 +925,9 @@
 <script src="/galada/js/jquery.waitforimages.min.js"></script>
 <script src="/galada/js/jquery.fitvids.js"></script>
 <script src="/galada/js/common.js"></script>
+
+
+
 
   <script src="/galada/assets/popup_assets_cp/javascripts/magnific-popup.js"></script>
 
