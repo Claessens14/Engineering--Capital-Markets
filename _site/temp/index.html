@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Premiere on Broadway</title>
+  <title>CapitalMarkets</title>
   <meta name='description' content='Galada is an easy and simple theme for Jekyll. Dark colors, give it a special exquisite look. A careful approach to design and features make it an ideal solution for a personal blog.'>
 
-  <link rel="canonical" href="http://localhost:4000/galada/premiere-on-broadway/">
+  <link rel="canonical" href="http://localhost:4000/galada/temp/">
   <link rel="alternate" type="application/rss+xml" title="Galada Theme | Theme for Jekyll" href="/galada/feed.xml">
 
   <!-- Google Font -->
@@ -94,463 +94,213 @@
 </head>
 
 
-<body>
-
-  
-  <div class="preloader">
-  <div class="loader">
-    <span>Loading</span>
-  </div>
-</div> <!-- /.loader -->
-  <header class="header">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="header-box">
-          <div class="logo-title">
-            <a href="/galada/" class="logo-text">Galada</a>
-          </div>
-
-          <nav class="nav-menu">
-            <i class="menu-close ion ion-ios-close"></i>
-            <ul class="menu-list">
-              <li class="menu-item"><a href="/galada/" class="menu-link">Home</a></li>
-              
-                
-              
-                
-              
-              <li class="menu-item"><a href="/galada/CapitalMarkets/" class="menu-link">CapitalMarkets</a></li>
-              
-                
-              
-                
-              
-              <li class="menu-item"><a href="/galada/about/" class="menu-link">About</a></li>
-              
-                
-              
-                
-              
-              <li class="menu-item"><a href="/galada/CapitalMark/" class="menu-link">CapitalMarkets</a></li>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-              <li class="menu-item"><a href="/galada/styleguide/" class="menu-link">Style Guide</a></li>
-              
-                
-              
-                
-              
-                
-              
-              <li class="menu-item"><a href="/galada/temp/" class="menu-link">CapitalMarkets</a></li>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-            </ul>
-          </nav>
-          <div class="nav-buttons">
-            <i class="menu-button d-hide ion ion-ios-menu"></i>
-            <i class="search-button ion ion-ios-search"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="search">
-    <div class="search-box">
-      <i class="search-close-button ion ion-ios-close"></i>
-      <label for="js-search-input" class="screen-reader-text"></label>
-      <input type="text" id="js-search-input" class="search-text" autocomplete="off" placeholder="Search Something...">
-      <ol id="js-results-container" class="search-results-list"></ol>
-    </div>
-  </div>
-</header> <!-- /.header -->
 
 
-      <div class="container">
-	<div class="row">
-		<div class="col col-12">
-			<div class="post-image-box">
-				<div class="post-image" style="background-image: url(/galada/img/03.jpg)"></div>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="container">
-	<div class="row">
-		<article class="col col-12 col-t-8 post">
-			<div class="post-content">
+ 
+ 
+ 
+ <script id="code">
+    function init() {
+      //if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
 
-				<div class="post-head">
-					
-					<div class="post-tag">
-						
-						<a href="/galada/tags#Rest" class="tag">Rest</a>
-						
-					</div>
-					
-					<h1 class="post-title">Premiere on Broadway</h1>
-					<div class="post-info">
-						<div class="post-info-author">
-							<div class="info-author-avatar" style="background-image: url(/galada/img/09.jpg)"></div>
-							<span>by</span>
-							<span class="info-author-name">Natali Anderson</span>
-						</div>
-						<div class="post-date">
-							<span>
-								<time datetime="2018-08-23T09:04:00-04:00">Aug 23, 2018</time>
-							</span>
-						</div>
-					</div>
-				</div>
+      /*
+        Leaflet init
+      */
+      var defaultZoom = 6;
+      var mapOrigin = [50.02185841773444, 0.15380859375];
+      myLeafletMap = L.map("map", {}).setView(mapOrigin, defaultZoom);
+      L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18,
+        tileSize: 512,
+        zoomOffset: -1,
+        id: "mapbox/dark-v10",
+        accessToken: "pk.eyJ1IjoiZ29qcyIsImEiOiJjaXppcnNkbDgwMzQ3MnFsNDFnY2phb2QwIn0.7AuVKrWdxQnJxa_W7qC3-w"
+      }).addTo(myLeafletMap);
 
-				<div class="post-body">
-					<p>Unicorn vegan humblebrag whatever microdosing, yr pabst post-ironic chartreuse. IPhone irony fingerstache microdosing juice poutine. Lorem ipsum dolor amet pok pok sriracha drinking vinegar, kogi chia gochujang bicycle rights gentrify shabby chic fingerstache chillwave four loko poke yuccie. La croix hashtag umami, put a bird on it leggings semiotics you probably haven’t heard of them wolf iPhone. Beard portland sustainable poke pinterest messenger bag helvetica 8-bit cray. Keffiyeh PBR&amp;B helvetica organic palo santo, art party pop-up letterpress next level VHS selvage snackwave tumblr deep v. Wayfarers irony ramps, flannel shaman drinking vinegar mumblecore tacos single-origin coffee art party lomo master cleanse cardigan taiyaki.</p>
+      myLeafletMap.on("move", function(e) {
+        myUpdatingGoJS = true;
+        myDiagram.updateAllTargetBindings("latlong"); // Without virtualization this can be slow if there are many nodes
+        myDiagram.redraw(); // At the expense of performance, this will make sure GoJS positions are updated immediately
+        myUpdatingGoJS = false;
+      });
 
-<p>Retro activated charcoal mustache selvage sartorial four loko brooklyn woke dreamcatcher lyft migas VHS. Bitters celiac flannel schlitz aesthetic echo park polaroid. Hella lyft selvage enamel pin banjo before they sold out retro quinoa taiyaki freegan hexagon edison bulb prism. Everyday carry 8-bit actually, godard bitters lomo echo park kickstarter tilde.</p>
+      var myUpdatingGoJS = false;  // prevent modifying data.latlong properties upon Leaflet "move" events
 
-<p>Gluten-free bicycle rights kogi ramps chartreuse lyft. Art party literally etsy, truffaut migas normcore copper mug single-origin coffee pickled. Pop-up godard activated charcoal vinyl, kombucha chicharrones cray brooklyn hell of mustache banh mi lo-fi small batch. Ugh literally cred gluten-free. Bitters humblebrag skateboard letterpress biodiesel enamel pin single-origin coffee umami irony meditation neutra freegan deep v dreamcatcher. Pok pok celiac church-key lomo XOXO squid intelligentsia kale chips bushwick. Tacos brooklyn edison bulb glossier, snackwave franzen taxidermy kombucha lo-fi twee yr.</p>
+      /*
+        GoJS init
+      */
+      var $ = go.GraphObject.make;
+      myDiagram = $(go.Diagram, "myDiagramDiv",
+        {
+          "dragSelectingTool.isEnabled": false,
+          "animationManager.isEnabled": false,
+          scrollMode: go.Diagram.InfiniteScroll,
+          allowZoom: false,
+          allowHorizontalScroll: false,
+          allowVerticalScroll: false,
+          hasHorizontalScrollbar: false,
+          hasVerticalScrollbar: false,
+          initialPosition: new go.Point(0, 0),
+          padding: 0,
+          "toolManager.hoverDelay": 100  // how quickly tooltips are shown
+        });
 
-<p><img src="/galada/img/04.jpg" alt="" /></p>
+      var toolTipTemplate =
+        $("ToolTip",
+          $(go.TextBlock, { margin: 4 },
+            new go.Binding("text", "", function(d) {
+              return d.key + "\nlocation: [" + d.latlong.join(", ") + "]"
+            }))
+        );
 
-<p>Typewriter jean shorts literally godard la croix. Put a bird on it wayfarers distillery taiyaki knausgaard +1, hella fixie. Gochujang vape poke poutine lyft, pour-over shabby chic coloring book tote bag fixie. Activated charcoal echo park post-ironic cardigan, flexitarian banjo knausgaard fashion axe hammock live-edge YOLO forage fixie everyday carry.</p>
-
-<p>Kickstarter +1 brunch hell of twee asymmetrical cardigan hella forage humblebrag. Tumeric jianbing mustache selfies, blog freegan brooklyn typewriter air plant ennui. Poke snackwave chia vaporware normcore. Chambray brooklyn poutine polaroid. Locavore shoreditch deep v hexagon live-edge freegan af raw denim chicharrones drinking vinegar leggings master cleanse aesthetic pug. Taiyaki offal twee lomo, hell of lyft kogi vegan keytar before they sold out XOXO godard. Slow-carb quinoa pitchfork tumblr biodiesel.</p>
-
-<p>Live-edge williamsburg semiotics organic. Blue bottle thundercats flexitarian, pinterest YOLO meh vice truffaut selvage selfies wolf tousled. Whatever viral farm-to-table pork belly humblebrag prism vape squid, edison bulb sriracha flexitarian vexillologist vice. Locavore blog wolf bicycle rights yr literally vaporware vinyl.</p>
-
-<p>Next level lo-fi yuccie bitters echo park tacos single-origin coffee man braid sartorial. Kale chips PBR&amp;B ethical banjo chia hot chicken paleo small batch synth drinking vinegar. Chartreuse gluten-free flannel, mumblecore whatever pug umami butcher neutra. Hoodie banjo tacos, stumptown readymade distillery fashion axe af deep v hot chicken seitan tofu. Listicle vape portland, art party mlkshk yuccie YOLO austin 8-bit. Vaporware vinyl artisan, roof party deep v banjo cronut.</p>
-
-<p>Letterpress next level master cleanse mlkshk echo park celiac chillwave cray 90’s chia deep v. Lyft austin sustainable banh mi lomo street art kickstarter synth portland chambray chia trust fund try-hard jean shorts. Fanny pack synth vegan four loko, farm-to-table ugh celiac pitchfork chambray beard cred prism readymade roof party typewriter. Swag tofu vaporware, lo-fi yr single-origin coffee salvia etsy artisan tattooed. Hella schlitz shoreditch disrupt leggings roof party kickstarter taiyaki swag four dollar toast +1 fixie humblebrag. Pour-over air plant literally bespoke hella raw denim. Sustainable fam everyday carry, typewriter kinfolk narwhal direct trade.</p>
-
-<p>Man braid sustainable affogato pinterest leggings. Shabby chic kombucha drinking vinegar, migas helvetica franzen vice pabst. Fashion axe YOLO hexagon ramps. Keffiyeh gluten-free williamsburg kombucha. Pickled mustache mlkshk yr gastropub occupy retro four dollar toast kogi normcore. Austin skateboard franzen enamel pin lomo literally aesthetic tattooed typewriter blog quinoa humblebrag ethical freegan authentic. Vaporware crucifix 90’s, venmo adaptogen bitters migas.</p>
+        
 
 
-					<div class="post-share">
-						<ul class="share-list list-reset">
-							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/galada/premiere-on-broadway/"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on Facebook" rel="nofollow">
-									<i class="ion ion-logo-facebook"></i>
-								</a>
-							</li>
-					
-							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Premiere%20on%20Broadway&url=http://localhost:4000/galada/premiere-on-broadway/"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on Twitter" rel="nofollow">
-									<i class="ion ion-logo-twitter"></i>
-								</a>
-							</li>
-					
-							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/galada/premiere-on-broadway/&title=Premiere%20on%20Broadway&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on LinkedIn" rel="nofollow">
-									<i class="ion ion-logo-linkedin"></i>
-								</a>
-							</li>
-					
-							<li class="share-item">
-								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/premiere-on-broadway/&amp;media=http://localhost:4000/galada/img/03.jpg&amp;description=Premiere%20on%20Broadway"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on Pinterest" rel="nofollow">
-									<i class="ion ion-logo-pinterest"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
 
-				<div class="post-navigation">
-					
-					<a href="/galada/abstraction-as-art/" class="prev">
-						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
-						<h2 class="post-nav-title">Abstraction as art</h2>
-					</a>
-					 
-					<a href="/galada/night-city-lights/" class="next">
-						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
-						<h2 class="post-nav-title">Night city lights</h2>
-					</a>
-					
-				</div>
 
-			</div>
-			
-				<div class="comments">
-  <div id="disqus_thread" class="article-comments"></div>
-  <script>
-    (function () {
-      var d = document, s = d.createElement('script');
-      s.src = '//mr-brown.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
+        // ========== added up to hear   ===========
+
+
+
+
+
+
+
+
+      // the node template describes how each Node should be constructed
+      myDiagram.nodeTemplate =
+        $(go.Node, "Auto",
+          {
+            toolTip: toolTipTemplate,
+            locationSpot: go.Spot.Center
+          },
+          $(go.Shape, "Circle",
+            {
+              fill: "rgba(0, 255, 0, .4)",
+              stroke: "#082D47",
+              width: 7,
+              height: 7,
+              strokeWidth: 1
+            }),
+          // A two-way data binding with an Array of latitude,longitude numbers.
+          // Unfortunately the Leaflet conversion functions are not inverses of each other,
+          // so we have to explicitly avoid updating the source data Array
+          // when myUpdatingGoJS is true; otherwise there would be accumulating errors.
+          new go.Binding("location", "latlong", function(data) {
+            var point = myLeafletMap.latLngToContainerPoint(data);
+            return new go.Point(point.x, point.y);
+          }).makeTwoWay(function(pt, data) {
+            if (myUpdatingGoJS) {
+              return data.latlong; // no-op
+            } else {
+              var ll = (myLeafletMap.containerPointToLatLng([pt.x, pt.y]));
+              return [ll.lat, ll.lng];
+            }
+          })
+        );
+
+      myDiagram.linkTemplate =
+        $(go.Link,
+          {
+            layerName: "Background",
+            curve: go.Link.Bezier,
+            curviness: 2
+          },
+          $(go.Shape, { strokeWidth: 3, stroke: "rgba(100,100,255,.7)" })
+        );
+
+      myDiagram.toolManager.draggingTool.doActivate = function() {
+        myLeafletMap.dragging.disable();
+        go.DraggingTool.prototype.doActivate.call(this);
+      }
+
+      myDiagram.toolManager.draggingTool.doDeactivate = function() {
+        myLeafletMap.dragging.enable();
+        go.DraggingTool.prototype.doDeactivate.call(this);
+      }
+
+      // create the model data that will be represented by Nodes and Links
+      myDiagram.model = new go.GraphLinksModel(
+        [
+          // France
+          { key: "Paris", latlong: [48.876569, 2.359017] },
+          { key: "Brest", latlong: [48.387778, -4.479921] },
+          { key: "Rennes", latlong: [48.103375, -1.672809] },
+          { key: "Le Mans", latlong: [47.995562, 0.192413] },
+          { key: "Nantes", latlong: [47.217579, -1.541839] },
+          { key: "Tours", latlong: [47.388502, 0.694500] },
+          { key: "Le Havre", latlong: [49.492755, 0.125278] },
+          { key: "Rouen", latlong: [49.449031, 1.094128] },
+          { key: "Lille", latlong: [50.636379, 3.070620] },
+
+          // Belgium
+          { key: "Brussels", latlong: [50.836271, 4.333963] },
+          { key: "Antwerp", latlong: [51.217495, 4.421204] },
+          { key: "Liege", latlong: [50.624168, 5.566008] },
+
+          // UK
+          { key: "London", latlong: [51.531132, -0.125132] },
+          { key: "Bristol", latlong: [51.449541, -2.581118] },
+          { key: "Birmingham", latlong: [52.477405, -1.898494] },
+          { key: "Liverpool", latlong: [53.408396, -2.978809] },
+          { key: "Manchester", latlong: [53.476346, -2.229651] },
+          { key: "Leeds", latlong: [53.795480, -1.548345] },
+          { key: "Glasgow", latlong: [55.863287, -4.250989] },
+        ],
+        [
+          { from: "Brest", to: "Rennes" },
+          { from: "Rennes", to: "Le Mans" },
+          { from: "Nantes", to: "Le Mans" },
+          { from: "Le Mans", to: "Paris" },
+          { from: "Tours", to: "Paris" },
+          { from: "Le Havre", to: "Rouen" },
+          { from: "Rouen", to: "Paris" },
+          { from: "Lille", to: "Paris" },
+          { from: "London", to: "Lille" },
+
+          { from: "Lille", to: "Brussels" },
+          { from: "Brussels", to: "Antwerp" },
+          { from: "Brussels", to: "Liege" },
+
+          { from: "Bristol", to: "London" },
+          { from: "Birmingham", to: "London" },
+          { from: "Leeds", to: "London" },
+          { from: "Liverpool", to: "Birmingham" },
+          { from: "Manchester", to: "Liverpool" },
+          { from: "Manchester", to: "Leeds" },
+          { from: "Glasgow", to: "Manchester" },
+          { from: "Glasgow", to: "Leeds" }
+        ]);
+    } // end init
   </script>
-  <noscript>Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-</div> <!-- /.comments -->
-			
-	</article> <!-- /.post -->
 
-	<div class="col col-12 col-t-4">
-		<aside class="sidebar">
-  
-  
-  <div class="widget widget-recent">
-    <h3 class="widget-title">Recent Posts</h3>
-    
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/galada/the-most-popular-mistakes/" style="background-image: url(/galada/img/01.jpg)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/galada/the-most-popular-mistakes/">The most popular mistakes</a></h6>
-        <div class="recent-date">
-          <time datetime="2018-08-23T09:05:55-04:00">August 23, 2018</time>
-        </div>
-      </div>
-    </div>
-    
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/galada/night-city-lights/" style="background-image: url(/galada/img/02.jpg)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/galada/night-city-lights/">Night city lights</a></h6>
-        <div class="recent-date">
-          <time datetime="2018-08-23T09:04:55-04:00">August 23, 2018</time>
-        </div>
-      </div>
-    </div>
-    
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/galada/premiere-on-broadway/" style="background-image: url(/galada/img/03.jpg)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/galada/premiere-on-broadway/">Premiere on Broadway</a></h6>
-        <div class="recent-date">
-          <time datetime="2018-08-23T09:04:00-04:00">August 23, 2018</time>
-        </div>
-      </div>
-    </div>
-    
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/galada/abstraction-as-art/" style="background-image: url(/galada/img/04.jpg)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/galada/abstraction-as-art/">Abstraction as art</a></h6>
-        <div class="recent-date">
-          <time datetime="2018-08-23T09:03:50-04:00">August 23, 2018</time>
-        </div>
-      </div>
-    </div>
-    
+<body onload="init()">
+
+<div id="sample">
+  <div id="map" class="mapDiagram">
+    <div id="myDiagramDiv" class="mapDiagram"></div>
   </div>
-  
-
-  <div class="widget widget-social">
-    <h3 class="widget-title">Subscribe & Follow</h3>
-    <ul class="social-profiles list-reset">
-      
-      <li class="social-profiles-item">
-        <a href="https://facebook.com/" class="social-profiles-link"><i class="ion ion-logo-facebook"></i></a>
-      </li>
-      
-
-       
-      <li class="social-profiles-item">
-        <a href="https://twitter.com/" class="social-profiles-link"><i class="ion ion-logo-twitter"></i></a>
-      </li>
-      
-
-      
-      <li class="social-profiles-item">
-        <a href="https://www.instagram.com/" class="social-profiles-link"><i class="ion ion-logo-instagram"></i></a>
-      </li>
-      
-
-      
-      <li class="social-profiles-item">
-        <a href="https://www.pinterest.com/" class="social-profiles-link"><i class="ion ion-logo-pinterest"></i></a>
-      </li>
-      
-    </ul>
-  </div>
-
-  <div class="widget widget-newsletter">
-    <h3 class="widget-title">Newsletter</h3>
-    <div class="newsletter-subtitle">Get Interesting News</div>
-    <div class="newsletter-text">Receive the latest news via email.</div>
-    <form class="c-newsletter-form validate" action="#" method="POST"
-      id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
-      <div class="newsletter-group">
-        <div class="newsletter-group-top">
-          <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
-          <i class="email-icon ion ion-ios-mail"></i>
-          <input class="newsletter-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="E-mail">
-        </div>
-        <input class="newsletter-button" id="mc-embedded-subscribe" type="submit" name="subscribe" value="Subscribe">
-      </div>
-    </form>
-  </div>
-
-  
-  <div class="widget widget-instagram">
-    <h3 class="widget-title">Instagram</h3>
-    <div class="instagram-box">
-      <ul id="instafeed" class="instagram-grid list-reset clearfix"></ul>
-      <a class="instagram-prof" href="#">&#64;UserName</a>
-    </div>
-  </div>
-  
-
-  <div class="widget widget-tags">
-    <h3 class="widget-title">Tag Cloud</h3>
-     
-    <ul class="tag-list list-reset">
-    
-      
-        <li class="tag-item"><a href="/galada/tags#Art" class="tag">Art</a></li>
-      
-    
-      
-        <li class="tag-item"><a href="/galada/tags#Cities" class="tag">Cities</a></li>
-      
-    
-      
-        <li class="tag-item"><a href="/galada/tags#Flowers" class="tag">Flowers</a></li>
-      
-    
-      
-        <li class="tag-item"><a href="/galada/tags#Guide" class="tag">Guide</a></li>
-      
-    
-      
-        <li class="tag-item"><a href="/galada/tags#Jekyll" class="tag">Jekyll</a></li>
-      
-    
-      
-        <li class="tag-item"><a href="/galada/tags#Life" class="tag">Life</a></li>
-      
-    
-      
-        <li class="tag-item"><a href="/galada/tags#Lifehacks" class="tag">Lifehacks</a></li>
-      
-    
-      
-        <li class="tag-item"><a href="/galada/tags#Rest" class="tag">Rest</a></li>
-      
-    
-      
-        <li class="tag-item"><a href="/galada/tags#Trip" class="tag">Trip</a></li>
-      
-    
-    
-    </ul>
-  </div>
-  
-</aside> <!-- /.sidebar -->
-	</div>
-
-	</div>
+  <p>
+    This sample integrates GoJS as a layer above the <a href="http://leafletjs.com/">Leaflet mapping library</a>.
+    This demonstrates how to use GoJS within a GIS application by displaying a Diagram of nodes and links atop the map,
+    using latitude and longitude for their coordinates.
+  </p>
+  <p>
+    You can pan and zoom with Leaflet, and select and drag with GoJS.
+    The GoJS div is on top of the Leaflet map, but this sample selectively bubbles events to leaflet by using a custom Tool.
+    Dragged nodes will update their latitude and longitude data in the <a>Diagram.model</a>.
+  </p>
+  <p>
+    This diagram displays a few train stations and routes in France, Belgium, and the UK.
+    The data is only meant as an example of using GoJS and is not meant to be accurate.
+  </p>
+  <p>
+    Note that the map is fetched through the <a href="https://mapbox.com/">Mapbox</a> API.
+    Access tokens can expire, and you'll need to get your own token.
+  </p>
 </div>
-
-  <footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="footer-top">
-          <h2 class="logo-title">
-            <a href="/galada/" class="logo-text">Galada</a>
-          </h2>
-          <div class="top"><i class="ion ion-ios-arrow-up"></i></div>
-        </div>
-        <div class="footer-bottom">
-          <div class="copyright">
-            <p>&copy; 2020 Crafted & Designed by <a href="https://github.com/artemsheludko">Artem Sheludko</a></p>
-          </div>
-          <div class="footer-social">
-            <ul class="list-reset">
-              
-              <li><a href="https://facebook.com/">Facebook</a></li>
-              
-
-              
-              <li><a href="https://twitter.com/">Twitter</a></li>
-              
-
-              
-              <li><a href="https://www.instagram.com/">Instagram</a></li>
-              
-
-              
-              <li><a href="https://www.pinterest.com/">Pinterest</a></li>
-              
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer> <!-- /.footer -->
-  <script src="/galada/js/jquery-3.3.1.min.js"></script>
-<script src="/galada/js/simple-jekyll-search.min.js"></script>
-<script>
-  SimpleJekyllSearch({
-  searchInput: document.getElementById("js-search-input"),
-  resultsContainer: document.getElementById("js-results-container"),
-  json: "/galada/search.json",
-  searchResultTemplate:
-    '<li class="search-item"><a class="search-link" href="{url}">{title}</a></li>',
-  noResultsText: '<li class="search-no-item">No results found</li>'
-  });
-</script>
-<script src="/galada/js/instafeed.min.js"></script>
-<script src="/galada/js/jquery.waitforimages.min.js"></script>
-<script src="/galada/js/jquery.fitvids.js"></script>
-<script src="/galada/js/common.js"></script>
-
-  <script src="/galada/assets/popup_assets_cp/javascripts/magnific-popup.js"></script>
 
 </body>
-
 </html>

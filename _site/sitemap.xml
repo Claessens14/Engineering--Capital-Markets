@@ -39,6 +39,9 @@
 <loc>http://localhost:4000/galada/about/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/galada/CapitalMark/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/galada/</loc>
 </url>
 <url>
@@ -46,6 +49,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/galada/tags/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/galada/temp/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/galada/page/2/</loc>

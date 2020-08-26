@@ -19,6 +19,36 @@
   <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
 
   <!---------- WHAT I ADDED  ---------->
+  <meta charset="UTF-8">
+  <title>Leaflet.js and GoJS</title>
+  <meta name="description" content="A map integrating a GoJS Diagram and the Leaflet mapping library." />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Copyright 1998-2020 by Northwoods Software Corporation. -->
+<script src="https://unpkg.com/gojs/release/go-debug.js"></script>
+<link rel='stylesheet' href='https://gojs.net/latest/extensions/DataInspector.css' />
+<script src="https://gojs.net/latest/extensions/DataInspector.js"></script>
+<script src="https://gojs.net/latest/extensions/GuidedDraggingTool.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet-src.js"></script>
+
+
+
+  <style type="text/css">
+    /* CSS applied to the Leaflet map */
+    .mapDiagram {
+      border: solid 1px black;
+      width: 100%;
+      height: 900px;
+    }
+
+    #myDiagramDiv {
+      z-index: 701;
+    }
+  </style>
+
+
+
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Source+Code+Pro">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"> -->
@@ -27,9 +57,7 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
   </script> -->
 
-  <!---------- Background Interactive Map  ---------->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet-src.js"></script>
+
   <!-- Magnific Popup core CSS file -->
   <!-- <link rel="stylesheet" href="/galada/assets/popup_assets_cp/stylesheets/magnific-popup.css"> -->
 
@@ -69,10 +97,36 @@
 
 
 <script>
+    function backgroundMap() {
+        // /*
+        //   Leaflet init
+        // */
+        var defaultZoom = 6;
+        var mapOrigin = [50.02185841773444, 0.15380859375];
+        myLeafletMap = L.map("map", {}).setView(mapOrigin, defaultZoom);
+        L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          maxZoom: 18,
+          tileSize: 512,
+          zoomOffset: -1,
+          id: "mapbox/dark-v10",
+          accessToken: "pk.eyJ1IjoiZ29qcyIsImEiOiJjaXppcnNkbDgwMzQ3MnFsNDFnY2phb2QwIn0.7AuVKrWdxQnJxa_W7qC3-w"
+        }).addTo(myLeafletMap);
+  
+        myLeafletMap.on("move", function(e) {
+          myUpdatingGoJS = true;
+          myDiagram.updateAllTargetBindings("latlong"); // Without virtualization this can be slow if there are many nodes
+          myDiagram.redraw(); // At the expense of performance, this will make sure GoJS positions are updated immediately
+          myUpdatingGoJS = false;
+        });
+        var myUpdatingGoJS = false;  // prevent modifying data.latlong properties upon Leaflet "move" events
+    
+
+
   var editor;
   var myDiagram;
-  var myPalette;
-  $(document).ready(function() {
+  //var myPalette;
+  //$(document).ready(function() {
     editor = ace.edit("editor");
     window.onbeforeunload = function(){
       return 'Are you sure you want to leave, changes will be lost unless saved to JSON?';
@@ -191,8 +245,88 @@
         }
       }
 
+
+
+
+
+
+
+
+      /*  Nodes for the Map   */
+    //   myDiagram.nodeTemplateMap.add("", 
+    //     Go(go.Node, "Auto",
+    //       {
+    //         toolTip: toolTipTemplate,
+    //         locationSpot: go.Spot.Center
+    //       },
+    //       $(go.Shape, "Circle",
+    //         {
+    //           fill: "rgba(0, 255, 0, .4)",
+    //           stroke: "#082D47",
+    //           width: 7,
+    //           height: 7,
+    //           strokeWidth: 1
+    //         }),
+    //       // A two-way data binding with an Array of latitude,longitude numbers.
+    //       // Unfortunately the Leaflet conversion functions are not inverses of each other,
+    //       // so we have to explicitly avoid updating the source data Array
+    //       // when myUpdatingGoJS is true; otherwise there would be accumulating errors.
+    //       new go.Binding("location", "latlong", function(data) {
+    //         var point = myLeafletMap.latLngToContainerPoint(data);
+    //         return new go.Point(point.x, point.y);
+    //       }).makeTwoWay(function(pt, data) {
+    //         if (myUpdatingGoJS) {
+    //           return data.latlong; // no-op
+    //         } else {
+    //           var ll = (myLeafletMap.containerPointToLatLng([pt.x, pt.y]));
+    //           return [ll.lat, ll.lng];
+    //         }
+    //       })
+    //     )
+    //   );
+
+
+    myDiagram.nodeTemplateMap.add("",
+        Go(go.Node, "Auto",
+          {
+            toolTip: toolTipTemplate,
+            locationSpot: go.Spot.Center
+          },
+          Go(go.Shape, "Circle",
+            {
+              fill: "rgba(0, 255, 0, .4)",
+              stroke: "#082D47",
+              width: 7,
+              height: 7,
+              strokeWidth: 1
+            }),
+          // A two-way data binding with an Array of latitude,longitude numbers.
+          // Unfortunately the Leaflet conversion functions are not inverses of each other,
+          // so we have to explicitly avoid updating the source data Array
+          // when myUpdatingGoJS is true; otherwise there would be accumulating errors.
+          new go.Binding("location", "latlong", function(data) {
+            var point = myLeafletMap.latLngToContainerPoint(data);
+            return new go.Point(point.x, point.y);
+          }).makeTwoWay(function(pt, data) {
+            if (myUpdatingGoJS) {
+              return data.latlong; // no-op
+            } else {
+              var ll = (myLeafletMap.containerPointToLatLng([pt.x, pt.y]));
+              return [ll.lat, ll.lng];
+            }
+          })
+        ));
+
+
+
+
+
+
+
+
+
       // define the Node templates for regular nodes
-      myDiagram.nodeTemplateMap.add("",  // the default category
+      myDiagram.nodeTemplateMap.add("basic",  // the default category
         Go(go.Node, "Table", nodeStyle(),
           // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
           Go(go.Panel, "Auto",
@@ -219,7 +353,7 @@
         )
       );
 
-      myDiagram.nodeTemplateMap.add("RedText",  // the default category
+      myDiagram.nodeTemplateMap.add("RedText",  
         Go(go.Node, "Table", nodeStyle(),
           // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
           Go(go.Panel, "Auto",
@@ -290,7 +424,7 @@
         });
       }
 
-      myDiagram.nodeTemplateMap.add("ImageBlock",  // the default category
+      myDiagram.nodeTemplateMap.add("ImageBlock", 
         Go(go.Node, "Table", nodeStyle(),
           // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
           Go(go.Panel, "Auto",
@@ -413,44 +547,128 @@
       );
 
       // replace the default Link template in the linkTemplateMap
+      // myDiagram.linkTemplate =
+      //   Go(go.Link,  // the whole link panel
+      //     {
+      //       routing: go.Link.AvoidsNodes,
+      //       curve: go.Link.JumpOver,
+      //       corner: 5, toShortLength: 4,
+      //       relinkableFrom: true,
+      //       relinkableTo: true,
+      //       reshapable: true,
+      //       resegmentable: true,
+      //       // mouse-overs subtly highlight links:
+      //       mouseEnter: function(e, link) { link.findObject("HIGHLIGHT").stroke = "rgba(30,144,255,0.2)"; },
+      //       mouseLeave: function(e, link) { link.findObject("HIGHLIGHT").stroke = "transparent"; },
+      //       selectionAdorned: false
+      //     },
+      //     new go.Binding("points").makeTwoWay(),
+      //     Go(go.Shape,  // the highlight shape, normally transparent
+      //       { isPanelMain: true, strokeWidth: 8, stroke: "transparent", name: "HIGHLIGHT" }),
+      //     Go(go.Shape,  // the link path shape
+      //       { isPanelMain: true, stroke: "gray", strokeWidth: 2 },
+      //       new go.Binding("stroke", "isSelected", function(sel) { return sel ? "dodgerblue" : "gray"; }).ofObject()),
+      //     Go(go.Shape,  // the arrowhead
+      //       { toArrow: "standard", strokeWidth: 0, fill: "gray" }),
+      //     Go(go.Panel, "Auto",  // the link label, normally not visible
+      //       { visible: false, name: "LABEL", segmentIndex: 2, segmentFraction: 0.5 },
+      //       new go.Binding("visible", "visible").makeTwoWay(),
+      //       Go(go.Shape, "RoundedRectangle",  // the label shape
+      //         { fill: "#F8F8F8", strokeWidth: 0 }), //#cdcfd3; for blank background
+      //       Go(go.TextBlock, "Yes",  // the label
+      //         {
+      //           textAlign: "center",
+      //           font: "7pt helvetica, arial, sans-serif",
+      //           stroke: "red",
+      //           editable: true
+      //         },
+      //         new go.Binding("text").makeTwoWay())
+      //     )
+      //   );
+
+
+
+
+
+
+
       myDiagram.linkTemplate =
-        Go(go.Link,  // the whole link panel
+        Go(go.Link,
           {
-            routing: go.Link.AvoidsNodes,
-            curve: go.Link.JumpOver,
-            corner: 5, toShortLength: 4,
-            relinkableFrom: true,
-            relinkableTo: true,
-            reshapable: true,
-            resegmentable: true,
-            // mouse-overs subtly highlight links:
-            mouseEnter: function(e, link) { link.findObject("HIGHLIGHT").stroke = "rgba(30,144,255,0.2)"; },
-            mouseLeave: function(e, link) { link.findObject("HIGHLIGHT").stroke = "transparent"; },
-            selectionAdorned: false
+            layerName: "Background",
+            curve: go.Link.Bezier,
+            curviness: 2
           },
-          new go.Binding("points").makeTwoWay(),
-          Go(go.Shape,  // the highlight shape, normally transparent
-            { isPanelMain: true, strokeWidth: 8, stroke: "transparent", name: "HIGHLIGHT" }),
-          Go(go.Shape,  // the link path shape
-            { isPanelMain: true, stroke: "gray", strokeWidth: 2 },
-            new go.Binding("stroke", "isSelected", function(sel) { return sel ? "dodgerblue" : "gray"; }).ofObject()),
-          Go(go.Shape,  // the arrowhead
-            { toArrow: "standard", strokeWidth: 0, fill: "gray" }),
-          Go(go.Panel, "Auto",  // the link label, normally not visible
-            { visible: false, name: "LABEL", segmentIndex: 2, segmentFraction: 0.5 },
-            new go.Binding("visible", "visible").makeTwoWay(),
-            Go(go.Shape, "RoundedRectangle",  // the label shape
-              { fill: "#F8F8F8", strokeWidth: 0 }), //#cdcfd3; for blank background
-            Go(go.TextBlock, "Yes",  // the label
-              {
-                textAlign: "center",
-                font: "7pt helvetica, arial, sans-serif",
-                stroke: "red",
-                editable: true
-              },
-              new go.Binding("text").makeTwoWay())
-          )
+          Go(go.Shape, { strokeWidth: 3, stroke: "rgba(100,100,255,.7)" })
         );
+
+      myDiagram.toolManager.draggingTool.doActivate = function() {
+        myLeafletMap.dragging.disable();
+        go.DraggingTool.prototype.doActivate.call(this);
+      }
+
+      myDiagram.toolManager.draggingTool.doDeactivate = function() {
+        myLeafletMap.dragging.enable();
+        go.DraggingTool.prototype.doDeactivate.call(this);
+      }
+
+      // create the model data that will be represented by Nodes and Links
+      // myDiagram.model = new go.GraphLinksModel(
+      //   [
+      //     // France
+      //     { key: "Paris", latlong: [48.876569, 2.359017] },
+      //     { key: "Brest", latlong: [48.387778, -4.479921] },
+      //     { key: "Rennes", latlong: [48.103375, -1.672809] },
+      //     { key: "Le Mans", latlong: [47.995562, 0.192413] },
+      //     { key: "Nantes", latlong: [47.217579, -1.541839] },
+      //     { key: "Tours", latlong: [47.388502, 0.694500] },
+      //     { key: "Le Havre", latlong: [49.492755, 0.125278] },
+      //     { key: "Rouen", latlong: [49.449031, 1.094128] },
+      //     { key: "Lille", latlong: [50.636379, 3.070620] },
+
+      //     // Belgium
+      //     { key: "Brussels", latlong: [50.836271, 4.333963] },
+      //     { key: "Antwerp", latlong: [51.217495, 4.421204] },
+      //     { key: "Liege", latlong: [50.624168, 5.566008] },
+
+      //     // UK
+      //     { key: "London", latlong: [51.531132, -0.125132] },
+      //     { key: "Bristol", latlong: [51.449541, -2.581118] },
+      //     { key: "Birmingham", latlong: [52.477405, -1.898494] },
+      //     { key: "Liverpool", latlong: [53.408396, -2.978809] },
+      //     { key: "Manchester", latlong: [53.476346, -2.229651] },
+      //     { key: "Leeds", latlong: [53.795480, -1.548345] },
+      //     { key: "Glasgow", latlong: [55.863287, -4.250989] },
+      //   ],
+      //   [
+      //     { from: "Brest", to: "Rennes" },
+      //     { from: "Rennes", to: "Le Mans" },
+      //     { from: "Nantes", to: "Le Mans" },
+      //     { from: "Le Mans", to: "Paris" },
+      //     { from: "Tours", to: "Paris" },
+      //     { from: "Le Havre", to: "Rouen" },
+      //     { from: "Rouen", to: "Paris" },
+      //     { from: "Lille", to: "Paris" },
+      //     { from: "London", to: "Lille" },
+
+      //     { from: "Lille", to: "Brussels" },
+      //     { from: "Brussels", to: "Antwerp" },
+      //     { from: "Brussels", to: "Liege" },
+
+      //     { from: "Bristol", to: "London" },
+      //     { from: "Birmingham", to: "London" },
+      //     { from: "Leeds", to: "London" },
+      //     { from: "Liverpool", to: "Birmingham" },
+      //     { from: "Manchester", to: "Liverpool" },
+      //     { from: "Manchester", to: "Leeds" },
+      //     { from: "Glasgow", to: "Manchester" },
+      //     { from: "Glasgow", to: "Leeds" }
+      //   ]);
+
+
+
+
+
 
       myDiagram.groupTemplate =
         Go(go.Group, "Auto",
@@ -512,8 +730,9 @@
 
             nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
             model: new go.GraphLinksModel([  // specify the contents of the Palette
+            {  text: "Toronto" },
               { category: "Start", text: "Start", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
-              { text: "text", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
+              { category: "basic", text: "text", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "RedText", text:"RedText", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "ImageBlock", source: "http://res.cloudinary.com/du0tbys9q/image/upload/v1597629274/djiytxhwyhnoiuukqj2k.png", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "VideoBlock", source: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbanner2.kisspng.com%2F20180410%2Fjfe%2Fkisspng-youtube-play-button-computer-icons-clip-art-youtube-5acd2517807855.3866683515233938155262.jpg&f=1&nofb=1", video_source:"", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
@@ -627,7 +846,7 @@
         }
       }
     });
-  });//  ||======  END DOCUMENT.READY()  ======||
+ // });//  ||======  END DOCUMENT.READY()  ======||
 
 
   //  =====   STATIC BUTTON FUNCTIONS   ====== 
@@ -670,37 +889,9 @@
     element.click();
     document.body.removeChild(element);
   }
+}
 
 </script>
-
-
-<script>
-    function backgroundMap() {
-        /*
-          Leaflet init
-        */
-        var defaultZoom = 6;
-        var mapOrigin = [50.02185841773444, 0.15380859375];
-        myLeafletMap = L.map("map", {}).setView(mapOrigin, defaultZoom);
-        L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-          maxZoom: 18,
-          tileSize: 512,
-          zoomOffset: -1,
-          id: "mapbox/dark-v10",
-          accessToken: "pk.eyJ1IjoiZ29qcyIsImEiOiJjaXppcnNkbDgwMzQ3MnFsNDFnY2phb2QwIn0.7AuVKrWdxQnJxa_W7qC3-w"
-        }).addTo(myLeafletMap);
-  
-        myLeafletMap.on("move", function(e) {
-          myUpdatingGoJS = true;
-          myDiagram.updateAllTargetBindings("latlong"); // Without virtualization this can be slow if there are many nodes
-          myDiagram.redraw(); // At the expense of performance, this will make sure GoJS positions are updated immediately
-          myUpdatingGoJS = false;
-        });
-        var myUpdatingGoJS = false;  // prevent modifying data.latlong properties upon Leaflet "move" events
-    }
-</script>
-
 
 
 
@@ -743,6 +934,12 @@
               
                 
               
+              <li class="menu-item"><a href="/galada/CapitalMark/" class="menu-link">CapitalMarkets</a></li>
+              
+                
+              
+                
+              
                 
               
                 
@@ -754,6 +951,12 @@
               <li class="menu-item"><a href="/galada/styleguide/" class="menu-link">Style Guide</a></li>
               
                 
+              
+                
+              
+                
+              
+              <li class="menu-item"><a href="/galada/temp/" class="menu-link">CapitalMarkets</a></li>
               
                 
               
@@ -804,7 +1007,9 @@
   <link rel='stylesheet' href='https://gojs.net/latest/extensions/DataInspector.css' />
   <script src="https://gojs.net/latest/extensions/DataInspector.js"></script>
   <script src="https://gojs.net/latest/extensions/GuidedDraggingTool.js"></script>
-    
+      <!---------- Background Interactive Map  ---------->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet-src.js"></script>
   <!-- <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
   <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
   <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script> -->
@@ -822,16 +1027,21 @@
     <span>
         <div class="mapping" style="width: 100%; display: flex; justify-content: space-between">
         <!-- display: none; -->
-        <div id="myPaletteDiv" style="width: 100px; margin-right: 2px; background-color: #565e70;"></div>
 
         <!-- <div id="myDiagramDiv" style="flex-grow: 1; width: 100%; background-size: 100%; height: 750px; background-color: #cdcfd3;"></div> -->
         <!-- <div id="myDiagramDiv" style="flex-grow: 1; height: 750px;   background-repeat: no-repeat;
         background-size: 100%;
         background-position: center;  background-image: url(/galada/img/vector-world-map-v2.2-blackedout.jpeg)"></div>
         </div> -->
-        <div id="map" class="mapDiagram">
-            <div id="myDiagramDiv" class="mapDiagram" style="width: 0px; margin-right: 2px; background-color: #565e70;"></div>
-        </div>
+        
+          <div id="myPaletteDiv" style="width: 100px; height: 900px;  margin-right: 2px; background-color: #565e70;"></div>
+          <!-- background-color: #565e70; -->
+          <div id="map" class="mapDiagram">    
+          <div id="myDiagramDiv" class="mapDiagram" style="  height: 900px; margin-right: 2px; ">
+                
+              </div>    
+            </div>
+        
         </div>
     </span>
 

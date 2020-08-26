@@ -132,8 +132,57 @@ permalink: /CapitalMarkets/
         }
       }
 
+
+
+
+
+
+
+
+      /*  Nodes for the Map   */
+      myDiagram.nodeTemplateMap.add("", 
+        Go(go.Node, "Auto",
+          {
+            toolTip: toolTipTemplate,
+            locationSpot: go.Spot.Center
+          },
+          $(go.Shape, "Circle",
+            {
+              fill: "rgba(0, 255, 0, .4)",
+              stroke: "#082D47",
+              width: 7,
+              height: 7,
+              strokeWidth: 1
+            }),
+          // A two-way data binding with an Array of latitude,longitude numbers.
+          // Unfortunately the Leaflet conversion functions are not inverses of each other,
+          // so we have to explicitly avoid updating the source data Array
+          // when myUpdatingGoJS is true; otherwise there would be accumulating errors.
+          new go.Binding("location", "latlong", function(data) {
+            var point = myLeafletMap.latLngToContainerPoint(data);
+            return new go.Point(point.x, point.y);
+          }).makeTwoWay(function(pt, data) {
+            if (myUpdatingGoJS) {
+              return data.latlong; // no-op
+            } else {
+              var ll = (myLeafletMap.containerPointToLatLng([pt.x, pt.y]));
+              return [ll.lat, ll.lng];
+            }
+          })
+        )
+      );
+
+
+
+
+
+
+
+
+
+
       // define the Node templates for regular nodes
-      myDiagram.nodeTemplateMap.add("",  // the default category
+      myDiagram.nodeTemplateMap.add("basic",  // the default category
         Go(go.Node, "Table", nodeStyle(),
           // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
           Go(go.Panel, "Auto",
@@ -160,7 +209,7 @@ permalink: /CapitalMarkets/
         )
       );
 
-      myDiagram.nodeTemplateMap.add("RedText",  // the default category
+      myDiagram.nodeTemplateMap.add("RedText",  
         Go(go.Node, "Table", nodeStyle(),
           // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
           Go(go.Panel, "Auto",
@@ -231,7 +280,7 @@ permalink: /CapitalMarkets/
         });
       }
 
-      myDiagram.nodeTemplateMap.add("ImageBlock",  // the default category
+      myDiagram.nodeTemplateMap.add("ImageBlock", 
         Go(go.Node, "Table", nodeStyle(),
           // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
           Go(go.Panel, "Auto",
@@ -354,44 +403,128 @@ permalink: /CapitalMarkets/
       );
 
       // replace the default Link template in the linkTemplateMap
+      // myDiagram.linkTemplate =
+      //   Go(go.Link,  // the whole link panel
+      //     {
+      //       routing: go.Link.AvoidsNodes,
+      //       curve: go.Link.JumpOver,
+      //       corner: 5, toShortLength: 4,
+      //       relinkableFrom: true,
+      //       relinkableTo: true,
+      //       reshapable: true,
+      //       resegmentable: true,
+      //       // mouse-overs subtly highlight links:
+      //       mouseEnter: function(e, link) { link.findObject("HIGHLIGHT").stroke = "rgba(30,144,255,0.2)"; },
+      //       mouseLeave: function(e, link) { link.findObject("HIGHLIGHT").stroke = "transparent"; },
+      //       selectionAdorned: false
+      //     },
+      //     new go.Binding("points").makeTwoWay(),
+      //     Go(go.Shape,  // the highlight shape, normally transparent
+      //       { isPanelMain: true, strokeWidth: 8, stroke: "transparent", name: "HIGHLIGHT" }),
+      //     Go(go.Shape,  // the link path shape
+      //       { isPanelMain: true, stroke: "gray", strokeWidth: 2 },
+      //       new go.Binding("stroke", "isSelected", function(sel) { return sel ? "dodgerblue" : "gray"; }).ofObject()),
+      //     Go(go.Shape,  // the arrowhead
+      //       { toArrow: "standard", strokeWidth: 0, fill: "gray" }),
+      //     Go(go.Panel, "Auto",  // the link label, normally not visible
+      //       { visible: false, name: "LABEL", segmentIndex: 2, segmentFraction: 0.5 },
+      //       new go.Binding("visible", "visible").makeTwoWay(),
+      //       Go(go.Shape, "RoundedRectangle",  // the label shape
+      //         { fill: "#F8F8F8", strokeWidth: 0 }), //#cdcfd3; for blank background
+      //       Go(go.TextBlock, "Yes",  // the label
+      //         {
+      //           textAlign: "center",
+      //           font: "7pt helvetica, arial, sans-serif",
+      //           stroke: "red",
+      //           editable: true
+      //         },
+      //         new go.Binding("text").makeTwoWay())
+      //     )
+      //   );
+
+
+
+
+
+
+
       myDiagram.linkTemplate =
-        Go(go.Link,  // the whole link panel
+        $(go.Link,
           {
-            routing: go.Link.AvoidsNodes,
-            curve: go.Link.JumpOver,
-            corner: 5, toShortLength: 4,
-            relinkableFrom: true,
-            relinkableTo: true,
-            reshapable: true,
-            resegmentable: true,
-            // mouse-overs subtly highlight links:
-            mouseEnter: function(e, link) { link.findObject("HIGHLIGHT").stroke = "rgba(30,144,255,0.2)"; },
-            mouseLeave: function(e, link) { link.findObject("HIGHLIGHT").stroke = "transparent"; },
-            selectionAdorned: false
+            layerName: "Background",
+            curve: go.Link.Bezier,
+            curviness: 2
           },
-          new go.Binding("points").makeTwoWay(),
-          Go(go.Shape,  // the highlight shape, normally transparent
-            { isPanelMain: true, strokeWidth: 8, stroke: "transparent", name: "HIGHLIGHT" }),
-          Go(go.Shape,  // the link path shape
-            { isPanelMain: true, stroke: "gray", strokeWidth: 2 },
-            new go.Binding("stroke", "isSelected", function(sel) { return sel ? "dodgerblue" : "gray"; }).ofObject()),
-          Go(go.Shape,  // the arrowhead
-            { toArrow: "standard", strokeWidth: 0, fill: "gray" }),
-          Go(go.Panel, "Auto",  // the link label, normally not visible
-            { visible: false, name: "LABEL", segmentIndex: 2, segmentFraction: 0.5 },
-            new go.Binding("visible", "visible").makeTwoWay(),
-            Go(go.Shape, "RoundedRectangle",  // the label shape
-              { fill: "#F8F8F8", strokeWidth: 0 }), //#cdcfd3; for blank background
-            Go(go.TextBlock, "Yes",  // the label
-              {
-                textAlign: "center",
-                font: "7pt helvetica, arial, sans-serif",
-                stroke: "red",
-                editable: true
-              },
-              new go.Binding("text").makeTwoWay())
-          )
+          $(go.Shape, { strokeWidth: 3, stroke: "rgba(100,100,255,.7)" })
         );
+
+      myDiagram.toolManager.draggingTool.doActivate = function() {
+        myLeafletMap.dragging.disable();
+        go.DraggingTool.prototype.doActivate.call(this);
+      }
+
+      myDiagram.toolManager.draggingTool.doDeactivate = function() {
+        myLeafletMap.dragging.enable();
+        go.DraggingTool.prototype.doDeactivate.call(this);
+      }
+
+      // create the model data that will be represented by Nodes and Links
+      myDiagram.model = new go.GraphLinksModel(
+        [
+          // France
+          { key: "Paris", latlong: [48.876569, 2.359017] },
+          { key: "Brest", latlong: [48.387778, -4.479921] },
+          { key: "Rennes", latlong: [48.103375, -1.672809] },
+          { key: "Le Mans", latlong: [47.995562, 0.192413] },
+          { key: "Nantes", latlong: [47.217579, -1.541839] },
+          { key: "Tours", latlong: [47.388502, 0.694500] },
+          { key: "Le Havre", latlong: [49.492755, 0.125278] },
+          { key: "Rouen", latlong: [49.449031, 1.094128] },
+          { key: "Lille", latlong: [50.636379, 3.070620] },
+
+          // Belgium
+          { key: "Brussels", latlong: [50.836271, 4.333963] },
+          { key: "Antwerp", latlong: [51.217495, 4.421204] },
+          { key: "Liege", latlong: [50.624168, 5.566008] },
+
+          // UK
+          { key: "London", latlong: [51.531132, -0.125132] },
+          { key: "Bristol", latlong: [51.449541, -2.581118] },
+          { key: "Birmingham", latlong: [52.477405, -1.898494] },
+          { key: "Liverpool", latlong: [53.408396, -2.978809] },
+          { key: "Manchester", latlong: [53.476346, -2.229651] },
+          { key: "Leeds", latlong: [53.795480, -1.548345] },
+          { key: "Glasgow", latlong: [55.863287, -4.250989] },
+        ],
+        [
+          { from: "Brest", to: "Rennes" },
+          { from: "Rennes", to: "Le Mans" },
+          { from: "Nantes", to: "Le Mans" },
+          { from: "Le Mans", to: "Paris" },
+          { from: "Tours", to: "Paris" },
+          { from: "Le Havre", to: "Rouen" },
+          { from: "Rouen", to: "Paris" },
+          { from: "Lille", to: "Paris" },
+          { from: "London", to: "Lille" },
+
+          { from: "Lille", to: "Brussels" },
+          { from: "Brussels", to: "Antwerp" },
+          { from: "Brussels", to: "Liege" },
+
+          { from: "Bristol", to: "London" },
+          { from: "Birmingham", to: "London" },
+          { from: "Leeds", to: "London" },
+          { from: "Liverpool", to: "Birmingham" },
+          { from: "Manchester", to: "Liverpool" },
+          { from: "Manchester", to: "Leeds" },
+          { from: "Glasgow", to: "Manchester" },
+          { from: "Glasgow", to: "Leeds" }
+        ]);
+
+
+
+
+
 
       myDiagram.groupTemplate =
         Go(go.Group, "Auto",
@@ -454,7 +587,7 @@ permalink: /CapitalMarkets/
             nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
             model: new go.GraphLinksModel([  // specify the contents of the Palette
               { category: "Start", text: "Start", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
-              { text: "text", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
+              { category: "basic", text: "text", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "RedText", text:"RedText", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "ImageBlock", source: "http://res.cloudinary.com/du0tbys9q/image/upload/v1597629274/djiytxhwyhnoiuukqj2k.png", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "VideoBlock", source: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbanner2.kisspng.com%2F20180410%2Fjfe%2Fkisspng-youtube-play-button-computer-icons-clip-art-youtube-5acd2517807855.3866683515233938155262.jpg&f=1&nofb=1", video_source:"", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
