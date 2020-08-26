@@ -97,6 +97,9 @@
 
 
 <script>
+
+var editor;
+  var myDiagram;
     function backgroundMap() {
         // /*
         //   Leaflet init
@@ -123,8 +126,7 @@
     
 
 
-  var editor;
-  var myDiagram;
+
   //var myPalette;
   //$(document).ready(function() {
     editor = ace.edit("editor");
@@ -164,7 +166,7 @@
             hasVerticalScrollbar: false,
             initialPosition: new go.Point(0, 0),
             padding: 0,
-            "toolManager.hoverDelay": 100  // how quickly tooltips are shown
+            "toolManager.hoverDelay": 50  // how quickly tooltips are shown
           }
         );
 
@@ -190,16 +192,38 @@
 
       // helper definitions for node templates
       function nodeStyle() {
+        // return [
+        //   // The Node.location comes from the "loc" property of the node data,
+        //   // converted by the Point.parse static method.
+        //   // If the Node.location is changed, it updates the "loc" property of the node data,
+        //   // converting back using the Point.stringify static method.
+        //   new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
+        //   {
+        //     // the Node.location is at the center of each node
+        //     locationSpot: go.Spot.Center
+        //   }
+        // ];
+
+                  // A two-way data binding with an Array of latitude,longitude numbers.
+          // Unfortunately the Leaflet conversion functions are not inverses of each other,
+          // so we have to explicitly avoid updating the source data Array
+          // when myUpdatingGoJS is true; otherwise there would be accumulating errors.
         return [
-          // The Node.location comes from the "loc" property of the node data,
-          // converted by the Point.parse static method.
-          // If the Node.location is changed, it updates the "loc" property of the node data,
-          // converting back using the Point.stringify static method.
-          new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
           {
-            // the Node.location is at the center of each node
+            toolTip: toolTipTemplate,
             locationSpot: go.Spot.Center
-          }
+          },
+          new go.Binding("location", "latlong", function(data) {
+            var point = myLeafletMap.latLngToContainerPoint(data);
+            return new go.Point(point.x, point.y);
+          }).makeTwoWay(function(pt, data) {
+            if (myUpdatingGoJS) {
+              return data.latlong; // no-op
+            } else {
+              var ll = (myLeafletMap.containerPointToLatLng([pt.x, pt.y]));
+              return [ll.lat, ll.lng];
+            }
+          })
         ];
       }
 
@@ -240,7 +264,7 @@
 
       function textStyle() {
         return {
-          font: "bold 11pt Lato, Helvetica, Arial, sans-serif",
+          font: "bold 8pt Lato, Helvetica, Arial, sans-serif",
           stroke: "#F8F8F8"
         }
       }
@@ -317,14 +341,6 @@
           })
         ));
 
-
-
-
-
-
-
-
-
       // define the Node templates for regular nodes
       myDiagram.nodeTemplateMap.add("basic",  // the default category
         Go(go.Node, "Table", nodeStyle(),
@@ -357,14 +373,14 @@
         Go(go.Node, "Table", nodeStyle(),
           // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
           Go(go.Panel, "Auto",
-            Go(go.Shape, "RoundedRectangle",
-              { fill: "#8b8f99", stroke: "#dd3218", strokeWidth: 3 },
+            Go(go.Shape, "Circle",
+              { fill: "#8b8f99", stroke: "#dd3218", strokeWidth: 2 },
               new go.Binding("figure").makeTwoWay(),
               new go.Binding("fill"),
               new go.Binding("stroke", "edge_stroke")),
             Go(go.TextBlock, textStyle(),
               {
-                margin: 8,
+                margin: 0.0,
                 maxSize: new go.Size(160, NaN),
                 wrap: go.TextBlock.WrapFit,
                 editable: true
@@ -464,7 +480,7 @@
           // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
           Go(go.Panel, "Auto",
             Go(go.Shape, "RoundedRectangle",
-              { fill: "#282c34", stroke: "#00A9C9", strokeWidth: 0.01 },
+              { fill: "white", stroke: "#00A9C9", strokeWidth: 0.01 },
               new go.Binding("figure", "figure"),
               new go.Binding("fill"),
               new go.Binding("stroke", "edge_stroke")),
@@ -498,7 +514,7 @@
         Go(go.Node, "Table", nodeStyle(),
           Go(go.Panel, "Spot",
             Go(go.Shape, "Circle",
-              { desiredSize: new go.Size(80, 80), fill: "#282c34", stroke: "#09d3ac", strokeWidth: 3.5 }),
+              { desiredSize: new go.Size(40, 40), fill: "#282c34", stroke: "#09d3ac", strokeWidth: 2 }),
             Go(go.TextBlock, "Start", textStyle(),
               new go.Binding("text"))
           ),
@@ -532,7 +548,7 @@
       myDiagram.nodeTemplateMap.add("Comment",
         Go(go.Node, "Auto", nodeStyle(),
           Go(go.Shape, "File",
-            { fill: "#282c34", stroke: "#DEE0A3", strokeWidth: 3 }),
+            { fill: "#282c34", stroke: "#DEE0A3", strokeWidth: 2 }),
           Go(go.TextBlock, textStyle(),
             {
               margin: 8,
@@ -547,61 +563,62 @@
       );
 
       // replace the default Link template in the linkTemplateMap
-      // myDiagram.linkTemplate =
-      //   Go(go.Link,  // the whole link panel
-      //     {
-      //       routing: go.Link.AvoidsNodes,
-      //       curve: go.Link.JumpOver,
-      //       corner: 5, toShortLength: 4,
-      //       relinkableFrom: true,
-      //       relinkableTo: true,
-      //       reshapable: true,
-      //       resegmentable: true,
-      //       // mouse-overs subtly highlight links:
-      //       mouseEnter: function(e, link) { link.findObject("HIGHLIGHT").stroke = "rgba(30,144,255,0.2)"; },
-      //       mouseLeave: function(e, link) { link.findObject("HIGHLIGHT").stroke = "transparent"; },
-      //       selectionAdorned: false
-      //     },
-      //     new go.Binding("points").makeTwoWay(),
-      //     Go(go.Shape,  // the highlight shape, normally transparent
-      //       { isPanelMain: true, strokeWidth: 8, stroke: "transparent", name: "HIGHLIGHT" }),
-      //     Go(go.Shape,  // the link path shape
-      //       { isPanelMain: true, stroke: "gray", strokeWidth: 2 },
-      //       new go.Binding("stroke", "isSelected", function(sel) { return sel ? "dodgerblue" : "gray"; }).ofObject()),
-      //     Go(go.Shape,  // the arrowhead
-      //       { toArrow: "standard", strokeWidth: 0, fill: "gray" }),
-      //     Go(go.Panel, "Auto",  // the link label, normally not visible
-      //       { visible: false, name: "LABEL", segmentIndex: 2, segmentFraction: 0.5 },
-      //       new go.Binding("visible", "visible").makeTwoWay(),
-      //       Go(go.Shape, "RoundedRectangle",  // the label shape
-      //         { fill: "#F8F8F8", strokeWidth: 0 }), //#cdcfd3; for blank background
-      //       Go(go.TextBlock, "Yes",  // the label
-      //         {
-      //           textAlign: "center",
-      //           font: "7pt helvetica, arial, sans-serif",
-      //           stroke: "red",
-      //           editable: true
-      //         },
-      //         new go.Binding("text").makeTwoWay())
-      //     )
-      //   );
-
-
-
-
-
-
-
       myDiagram.linkTemplate =
-        Go(go.Link,
+        Go(go.Link,  // the whole link panel
           {
-            layerName: "Background",
-            curve: go.Link.Bezier,
-            curviness: 2
+            routing: go.Link.AvoidsNodes,
+            curve: go.Link.JumpOver,
+            corner: 5, toShortLength: 4,
+            relinkableFrom: true,
+            relinkableTo: true,
+            reshapable: true,
+            resegmentable: true,
+            // mouse-overs subtly highlight links:
+            mouseEnter: function(e, link) { link.findObject("HIGHLIGHT").stroke = "rgba(30,144,255,0.2)"; },
+            mouseLeave: function(e, link) { link.findObject("HIGHLIGHT").stroke = "transparent"; },
+            selectionAdorned: false
           },
-          Go(go.Shape, { strokeWidth: 3, stroke: "rgba(100,100,255,.7)" })
+          new go.Binding("points").makeTwoWay(),
+          Go(go.Shape,  // the highlight shape, normally transparent
+            { isPanelMain: true, strokeWidth: 8, stroke: "transparent", name: "HIGHLIGHT" }),
+          Go(go.Shape,  // the link path shape
+            { isPanelMain: true, stroke: "gray", strokeWidth: 2 },
+            new go.Binding("stroke", "isSelected", function(sel) { return sel ? "dodgerblue" : "gray"; }).ofObject()),
+          Go(go.Shape,  // the arrowhead
+            { toArrow: "standard", strokeWidth: 0, fill: "gray" }),
+          Go(go.Panel, "Auto",  // the link label, normally not visible
+            { visible: false, name: "LABEL", segmentIndex: 2, segmentFraction: 0.5 },
+            new go.Binding("visible", "visible").makeTwoWay(),
+            Go(go.Shape, "RoundedRectangle",  // the label shape
+              { fill: "#F8F8F8", strokeWidth: 0 }), //#cdcfd3; for blank background
+            Go(go.TextBlock, "Yes",  // the label
+              {
+                textAlign: "center",
+                font: "7pt helvetica, arial, sans-serif",
+                stroke: "red",
+                editable: true
+              },
+              new go.Binding("text").makeTwoWay())
+          )
         );
 
+
+
+
+
+
+
+      // myDiagram.linkTemplate =
+      //   Go(go.Link,
+      //     {
+      //       layerName: "Background",
+      //       curve: go.Link.Bezier,
+      //       curviness: 2
+      //     },
+      //     Go(go.Shape, { strokeWidth: 3, stroke: "rgba(100,100,255,.7)" })
+      //   );
+
+      //Dragging Node
       myDiagram.toolManager.draggingTool.doActivate = function() {
         myLeafletMap.dragging.disable();
         go.DraggingTool.prototype.doActivate.call(this);
@@ -611,6 +628,35 @@
         myLeafletMap.dragging.enable();
         go.DraggingTool.prototype.doDeactivate.call(this);
       }
+      //Dragging New Links
+      myDiagram.toolManager.linkingTool.doActivate = function() {
+        myLeafletMap.dragging.disable();
+        go.LinkingTool.prototype.doActivate.call(this);
+      }
+
+      myDiagram.toolManager.linkingTool.doDeactivate = function() {
+        myLeafletMap.dragging.enable();
+        go.LinkingTool.prototype.doDeactivate.call(this);
+      }
+      //Dragging Old Links
+      myDiagram.toolManager.relinkingTool.doActivate = function() {
+        myLeafletMap.dragging.disable();
+        go.RelinkingTool.prototype.doActivate.call(this);
+      }
+
+      myDiagram.toolManager.relinkingTool.doDeactivate = function() {
+        myLeafletMap.dragging.enable();
+        go.RelinkingTool.prototype.doDeactivate.call(this);
+      }
+
+            // temporary links used by LinkingTool and RelinkingTool are also orthogonal:
+      //       myDiagram.toolManager.linkingTool.temporaryLink.routing = go.Link.Orthogonal;
+      // myDiagram.toolManager.relinkingTool.temporaryLink.routing = go.Link.Orthogonal;
+      
+      // myDiagram.toolManager.relinkingTool.temporaryLink.doActivate = function() {
+      //   myLeafletMap.dragging.disable();
+      //   //go.relinkingTool.temporaryLink.prototype.doActivate.call(this);
+      // }
 
       // create the model data that will be represented by Nodes and Links
       // myDiagram.model = new go.GraphLinksModel(
@@ -671,7 +717,7 @@
 
 
       myDiagram.groupTemplate =
-        Go(go.Group, "Auto",
+        Go(go.Group, "Auto", nodeStyle(),
           {
             layout: Go(go.GridLayout,
               { comparer: go.GridLayout.smartComparer,
@@ -780,7 +826,7 @@
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/javascript");
         editor.setValue(JSON.stringify(json, null, 2));
-        // document.getElementById("mySavedModel").value = JSON.stringify(json, null, 2);
+        //document.getElementById("mySavedModel").value = JSON.stringify(json, null, 2); For the old text area
         myDiagram.commandHandler.zoomToFit();
         myDiagram.select(myDiagram.nodes.first());
         //shiftGroups();  // initialize everything
@@ -848,7 +894,7 @@
     });
  // });//  ||======  END DOCUMENT.READY()  ======||
 
-
+    }
   //  =====   STATIC BUTTON FUNCTIONS   ====== 
 
   /* Load Button Function */
@@ -859,7 +905,7 @@
 
   /* Show the diagram's model in JSON format that the user may edit */
   function save() {
-    //document.getElementById("mySavedModel").value = myDiagram.model.toJson();
+    //document.getElementById("mySavedModel").value = myDiagram.model.toJson();  For the old text area
     editor.setValue(myDiagram.model.toJson());
     myDiagram.isModified = false;
     var objToday = new Date(),
@@ -889,7 +935,7 @@
     element.click();
     document.body.removeChild(element);
   }
-}
+
 
 </script>
 
