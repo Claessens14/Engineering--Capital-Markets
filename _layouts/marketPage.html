@@ -555,13 +555,13 @@ var editor;
 
             nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
             model: new go.GraphLinksModel([  // specify the contents of the Palette
-            {  text: "Toronto" },
+            { category: "Comment", text: "Comment", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "Start", text: "Start", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "basic", text: "text", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "RedText", text:"RedText", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "ImageBlock", source: "http://res.cloudinary.com/du0tbys9q/image/upload/v1597629274/djiytxhwyhnoiuukqj2k.png", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
               { category: "VideoBlock", source: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbanner2.kisspng.com%2F20180410%2Fjfe%2Fkisspng-youtube-play-button-computer-icons-clip-art-youtube-5acd2517807855.3866683515233938155262.jpg&f=1&nofb=1", video_source:"", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" },
-              { category: "Comment", text: "Comment", "fill":"#8b8f99", "edge_stroke":"#dd3218", "font_stroke":"#F8F8F8" }
+              {  text: "Toronto" }
             ])
           }
         );
@@ -820,7 +820,29 @@ var editor;
   {% include footer.html %}
   {% include javascripts.html %}
 
+  
+  <!-- Add the Stock Bot to the bottom corner! -->
+  <script>
+    // linux bot channel
+    (function () {
+        var div = document.createElement("div");
+        document.getElementsByTagName('body')[0].appendChild(div);
+        div.outerHTML = "<div id='botDiv' style='height: 38px; position: fixed; bottom: 0; left: calc(100vw - 400px); z-index: 1000; background-color: #fff'><div id='botTitleBar' style='height: 38px; width: 400px; position:fixed; cursor: pointer;'></div><iframe width='400px' height='600px' src='https://webchat.botframework.com/embed/StockZia_Bot_Channel_Linux/gemini?b=StockZia_Bot_Channel_Linux&s=Yvp7bW7sc7Q.Xu6lkr1z2l6l0GW_gcqTBCievCeTPy0IC3CL3vHxKWE'></iframe></div>"; 
 
+        document.querySelector('body').addEventListener('click', function (e) {
+            e.target.matches = e.target.matches || e.target.msMatchesSelector;
+            if (e.target.matches('#botTitleBar')) { 
+                var botDiv = document.querySelector('#botDiv'); 
+                botDiv.style.height = botDiv.style.height == '600px' ? '38px' : '600px';
+            };
+        });
+    }());
+</script>
+<!-- Bootstrap Js CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- FortAwesome -->
+<script src="https://use.fortawesome.com/eab9b8ee.js"></script>
+<script src="{{ site.baseurl }}/assets/js/script.js"></script>
 
   <script src="{{ site.baseurl }}/assets/popup_assets_cp/javascripts/magnific-popup.js"></script>
 

@@ -12,7 +12,7 @@
             <ul class="menu-list">
               <li class="menu-item"><a href="{{site.baseurl}}/" class="menu-link">Home</a></li>
               {% for page in site.pages %}
-                {% unless page.name == 'tags.html' or page.name == '404.html' %}
+                {% unless page.name == 'tags.html' or page.name == '404.html' or page.name == 'capMarkets.html' or page.name == 'temp.html' or page.name == 'styleguide.html'%}
               {% if page.title %}
               <li class="menu-item"><a href="{{ page.url | prepend: site.baseurl }}" class="menu-link">{{ page.title }}</a></li>
               {% endif %}
