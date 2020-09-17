@@ -234,8 +234,8 @@ var editor;
           {
             fill: "transparent",  // changed to a color in the mouseEnter event handler
             strokeWidth: 0,  // no stroke
-            width: horizontal ? NaN : 8,  // if not stretching horizontally, just 8 wide
-            height: !horizontal ? NaN : 8,  // if not stretching vertically, just 8 tall
+            width: horizontal ? NaN : 1,  // if not stretching horizontally, just 8 wide --- NOTE THESE INTERFERE WITH BUTTON CLCIKABLITY
+            height: !horizontal ? NaN : 1,  // if not stretching vertically, just 8 tall
             alignment: align,  // align the port on the main Shape
             stretch: (horizontal ? go.GraphObject.Horizontal : go.GraphObject.Vertical),
             portId: name,  // declare this object to be a "port"
@@ -400,24 +400,31 @@ var editor;
               { fill: "#282c34", stroke: "#00A9C9", strokeWidth: 0.01 },
               new go.Binding("figure", "figure"),
               new go.Binding("fill"),
-              new go.Binding("stroke", "edge_stroke")),
+              new go.Binding("stroke", "edge_stroke")
+              ,{
+                click: function(e, obj) {
+                    media_click(e, obj)
+                }
+              }),
             Go(go.TextBlock, textStyle(),
               {
-                margin: 8,
-                maxSize: new go.Size(160, NaN),
+                margin: 2,
+                maxSize: new go.Size(80, NaN),
                 wrap: go.TextBlock.WrapFit,
                 editable: true
               },
-                new go.Binding("stroke", "font_stroke"),
-                new go.Binding("text").makeTwoWay()),
+              new go.Binding("stroke", "font_stroke"),
+              new go.Binding("text").makeTwoWay()),
               Go(go.Picture,
-                { margin: 0, width: 30, height: 30, background: "#354D8F" },
-                new go.Binding("source").makeTwoWay()),
-              {
+                { margin: 1, width: 15, height: 15, background: "#354D8F" },
+                new go.Binding("source").makeTwoWay(),
+                {
                 click: function(e, obj) {
                     media_click(e, obj)
                 }
               }
+              ),
+
           ),
           // four named ports, one on each side:
           makePort("T", go.Spot.Top, go.Spot.TopSide, true, true, no_mouse_colour_bool=true),
@@ -439,7 +446,7 @@ var editor;
             Go(go.TextBlock, textStyle(),
               {
                 margin: 8,
-                maxSize: new go.Size(160, NaN),
+                maxSize: new go.Size(80, NaN),
                 wrap: go.TextBlock.WrapFit,
                 editable: true
               },
@@ -590,10 +597,10 @@ var editor;
           {
             layout: Go(go.GridLayout,
               { comparer: go.GridLayout.smartComparer,
-                wrappingColumn: 3 })
+                wrappingColumn: 2 })
             // other properties are set by the layout function, defined below
           },
-          Go(go.Shape, "Rectangle",
+          Go(go.Shape, "RoundedRectangle",
             { fill: "#8b8f99", stroke: "black", strokeWidth: 2 },
             new go.Binding("fill"), //need
             new go.Binding("stroke", "edge_stroke")), //need
@@ -602,16 +609,16 @@ var editor;
             Go(go.Panel, "Horizontal",
               { defaultAlignment: go.Spot.Top },
               // the SubGraphExpanderButton is a panel that functions as a button to expand or collapse the subGraph
-              Go("SubGraphExpanderButton"),
+              //Go("SubGraphExpanderButton"),
               Go(go.TextBlock,
-                { font: "Bold 10px Sans-Serif", stroke: "white", margin: 4, background: "white", wrap: go.TextBlock.WrapFit,
+                { font: "Bold 10px Sans-Serif", stroke: "white", margin: 2, background: "white", wrap: go.TextBlock.WrapFit,
                 editable: true },
                 new go.Binding("stroke", "font_stroke"), //need
                 new go.Binding("text").makeTwoWay())  //need
             ),
             // create a placeholder to represent the area where the contents of the group are
             Go(go.Placeholder,
-              { padding: new go.Margin(0, 5) })
+              { padding: new go.Margin(0, 2) })
           ),  // end Vertical Panel
           makePort("T", go.Spot.Top, go.Spot.TopSide, true, true),
           makePort("L", go.Spot.Left, go.Spot.Left, true, true),
