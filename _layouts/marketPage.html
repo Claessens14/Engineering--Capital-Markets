@@ -144,8 +144,8 @@ var editor;
           {
             fill: "transparent",  // changed to a color in the mouseEnter event handler
             strokeWidth: 0,  // no stroke
-            width: horizontal ? NaN : 1,  // if not stretching horizontally, just 8 wide --- NOTE THESE INTERFERE WITH BUTTON CLCIKABLITY
-            height: !horizontal ? NaN : 1,  // if not stretching vertically, just 8 tall
+            width: horizontal ? NaN : 3,  // if not stretching horizontally, just 8 wide --- NOTE THESE INTERFERE WITH BUTTON CLCIKABLITY
+            height: !horizontal ? NaN : 3,  // if not stretching vertically, just 8 tall
             alignment: align,  // align the port on the main Shape
             stretch: (horizontal ? go.GraphObject.Horizontal : go.GraphObject.Vertical),
             portId: name,  // declare this object to be a "port"
