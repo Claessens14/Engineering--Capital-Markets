@@ -521,8 +521,8 @@ var editor;
           },
 
           Go(go.Panel, "Auto", 
-            Go(go.Shape,//"RoundedRectangle",
-              {  fill: "#8b8f99", stroke: "red", strokeWidth: 2} , //maxSize: new go.Size(40, NaN)},
+            Go(go.Shape, "RoundedRectangle",
+              {  fill: "#8b8f99", stroke: "red", opacity:0.5, strokeWidth: 2} , //maxSize: new go.Size(40, NaN)},
               new go.Binding("fill"), //need
               new go.Binding("stroke", "edge_stroke")), //need
             Go(go.Panel, "Vertical", 
@@ -532,7 +532,7 @@ var editor;
                 // the SubGraphExpanderButton is a panel that functions as a button to expand or collapse the subGraph
                 //Go("SubGraphExpanderButton"),
                 Go(go.TextBlock,
-                  { font: "Bold 16px Sans-Serif", stroke: "Black", margin: 2, background: "white", wrap: go.TextBlock.WrapFit,
+                  { font: "Bold 16px Sans-Serif", stroke: "White", margin: 2,  wrap: go.TextBlock.WrapFit, //background: "white",
                   editable: true },
                   new go.Binding("stroke", "font_stroke"), //need
                   new go.Binding("text").makeTwoWay())  //need
@@ -540,7 +540,7 @@ var editor;
               )
               ,
               Go(go.Placeholder,
-              {  padding: new go.Margin(0, 1)})  //CHANGED
+              {  padding: new go.Margin(5, 5,5, 5)})  //CHANGED
             //   // ,
               // // create a placeholder to represent the area where the contents of the group are
 
