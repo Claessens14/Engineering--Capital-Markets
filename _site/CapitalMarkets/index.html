@@ -359,10 +359,16 @@ var editor;
         // obj.part.data -> data
         // nodes[i] -> data
         function makeItem(data) {
-          if (data && data.video_source && data.video_source.match(/youtube||vimeo||bitchute/g)) {
+          if (data && data.video_source && data.video_source.match(/youtube||vimeo/g)) {
             return {
               src: data.video_source,
               type: 'iframe'
+            }
+          }
+          if (data && data.video_source && data.video_source.match(/iframe/g)) {
+            return {
+              src: data.video_source,
+              type: 'inline'
             }
           } 
           return {
@@ -593,33 +599,43 @@ var editor;
       }
 
       myDiagram.groupTemplate =
-        Go(go.Group, "Auto", nodeStyle(),
+        Go(go.Group, "Table", nodeStyle(),
           {
+            
+            
             layout: Go(go.GridLayout,
               { comparer: go.GridLayout.smartComparer,
-                wrappingColumn: 2 })
-            // other properties are set by the layout function, defined below
+                wrappingColumn: 2 })//,
+          //       //minSize: new go.Size(20, 20),
+          //   // other properties are set by the layout function, defined below
           },
-          Go(go.Shape, "RoundedRectangle",
-            { fill: "#8b8f99", stroke: "black", strokeWidth: 2 },
-            new go.Binding("fill"), //need
-            new go.Binding("stroke", "edge_stroke")), //need
-          Go(go.Panel, "Vertical",
-            { defaultAlignment: go.Spot.Left, margin: 2 },
-            Go(go.Panel, "Horizontal",
-              { defaultAlignment: go.Spot.Top },
-              // the SubGraphExpanderButton is a panel that functions as a button to expand or collapse the subGraph
-              //Go("SubGraphExpanderButton"),
-              Go(go.TextBlock,
-                { font: "Bold 10px Sans-Serif", stroke: "white", margin: 2, background: "white", wrap: go.TextBlock.WrapFit,
-                editable: true },
-                new go.Binding("stroke", "font_stroke"), //need
-                new go.Binding("text").makeTwoWay())  //need
-            ),
-            // create a placeholder to represent the area where the contents of the group are
-            Go(go.Placeholder,
-              { padding: new go.Margin(0, 2) })
-          ),  // end Vertical Panel
+
+          Go(go.Panel, "Auto", 
+            Go(go.Shape,//"RoundedRectangle",
+              {  fill: "#8b8f99", stroke: "red", strokeWidth: 2} , //maxSize: new go.Size(40, NaN)},
+              new go.Binding("fill"), //need
+              new go.Binding("stroke", "edge_stroke")), //need
+            Go(go.Panel, "Vertical", 
+              { defaultAlignment: go.Spot.Left, margin: 2 },   //CHANGED
+              Go(go.Panel, "Horizontal",
+                { defaultAlignment: go.Spot.Top },
+                // the SubGraphExpanderButton is a panel that functions as a button to expand or collapse the subGraph
+                //Go("SubGraphExpanderButton"),
+                Go(go.TextBlock,
+                  { font: "Bold 16px Sans-Serif", stroke: "Black", margin: 2, background: "white", wrap: go.TextBlock.WrapFit,
+                  editable: true },
+                  new go.Binding("stroke", "font_stroke"), //need
+                  new go.Binding("text").makeTwoWay())  //need
+                  
+              )
+              ,
+              Go(go.Placeholder,
+              {  padding: new go.Margin(0, 1)})  //CHANGED
+            //   // ,
+              // // create a placeholder to represent the area where the contents of the group are
+
+            ),  // end Vertical Panel
+          ),
           makePort("T", go.Spot.Top, go.Spot.TopSide, true, true),
           makePort("L", go.Spot.Left, go.Spot.Left, true, true),
           makePort("R", go.Spot.Right, go.Spot.Right, true, true),
@@ -907,16 +923,6 @@ var editor;
 </header> <!-- /.header -->
 
 
-      
-
-
-  <h1>Mapping</h1>
-  <p style="color: red;">Please use Google Chrome for the best experience.</p>
-  <p>
-    <a href="https://www.quickpicturetools.com/en/combine_images/">image joiner</a><br>
-    <a href="https://postimages.org">image hosting</a><br>
-    <a href="https://htmlcheatsheet.com">cheat sheet</a>
-  </p>
   <!-- <script src="https://unpkg.com/gojs/release/go-debug.js"></script> -->
   <link rel='stylesheet' href='https://gojs.net/latest/extensions/DataInspector.css' />
   <script src="https://gojs.net/latest/extensions/DataInspector.js"></script>
