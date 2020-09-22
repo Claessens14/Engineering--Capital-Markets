@@ -41,8 +41,43 @@ layout: default
 
 				<div class="post-body">
 					{{ content }}
+					<ul class="social-profiles list-reset">
+						<!-- facebook:  https://facebook.com/ # Add your Facebook handle
+				  twitter:   https://twitter.com/ # Add your Facebook handle
+				  instagram: https://www.instagram.com/ # Add your Facebook handle
+				  pinterest: https://www.pinterest.com/ # Add your Facebook handle -->
+						{% if site.facebook !=  "https://facebook.com/" %}
+						<li class="social-profiles-item">
+						  <a href="{{ site.facebook }}" class="social-profiles-link"><i class="ion ion-logo-facebook"></i></a>
+						</li>
+						{% else %} {% endif %}
+				  
+						 {% if site.twitter %}
+						<li class="social-profiles-item">
+						  <a href="{{ site.twitter }}" class="social-profiles-link"><i class="ion ion-logo-twitter"></i></a>
+						</li>
+						{% else %} {% endif %}
+				  
+						{% if site.github %}
+						<li class="social-profiles-item">
+						  <a href="{{ site.github }}" class="social-profiles-link"><i class="ion ion-logo-github"></i></a>
+						</li>
+						{% else %} {% endif %}
+				  
+						{% if site.instagram != "https://www.instagram.com/" %}
+						<li class="social-profiles-item">
+						  <a href="{{ site.instagram }}" class="social-profiles-link"><i class="ion ion-logo-instagram"></i></a>
+						</li>
+						{% else %} {% endif %}
+				  
+						{% if site.pinterest != "https://www.pinterest.com/" %}
+						<li class="social-profiles-item">
+						  <a href="{{ site.pinterest }}" class="social-profiles-link"><i class="ion ion-logo-pinterest"></i></a>
+						</li>
+						{% else %} {% endif %}
+					  </ul>
 
-					<div class="post-share">
+					<!-- <div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
 								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ site.baseurl }}{{ page.url }}"
@@ -76,7 +111,7 @@ layout: default
 								</a>
 							</li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
 
 				<div class="post-navigation">

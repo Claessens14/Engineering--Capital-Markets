@@ -26,7 +26,11 @@
   <div class="widget widget-social">
     <h3 class="widget-title">Subscribe & Follow</h3>
     <ul class="social-profiles list-reset">
-      {% if site.facebook %}
+      <!-- facebook:  https://facebook.com/ # Add your Facebook handle
+twitter:   https://twitter.com/ # Add your Facebook handle
+instagram: https://www.instagram.com/ # Add your Facebook handle
+pinterest: https://www.pinterest.com/ # Add your Facebook handle -->
+      {% if site.facebook !=  "https://facebook.com/" %}
       <li class="social-profiles-item">
         <a href="{{ site.facebook }}" class="social-profiles-link"><i class="ion ion-logo-facebook"></i></a>
       </li>
@@ -38,13 +42,19 @@
       </li>
       {% else %} {% endif %}
 
-      {% if site.instagram %}
+      {% if site.github %}
+      <li class="social-profiles-item">
+        <a href="{{ site.github }}" class="social-profiles-link"><i class="ion ion-logo-github"></i></a>
+      </li>
+      {% else %} {% endif %}
+
+      {% if site.instagram != "https://www.instagram.com/" %}
       <li class="social-profiles-item">
         <a href="{{ site.instagram }}" class="social-profiles-link"><i class="ion ion-logo-instagram"></i></a>
       </li>
       {% else %} {% endif %}
 
-      {% if site.pinterest %}
+      {% if site.pinterest != "https://www.pinterest.com/" %}
       <li class="social-profiles-item">
         <a href="{{ site.pinterest }}" class="social-profiles-link"><i class="ion ion-logo-pinterest"></i></a>
       </li>
@@ -52,7 +62,7 @@
     </ul>
   </div>
 
-  <div class="widget widget-newsletter">
+  <!-- <div class="widget widget-newsletter">
     <h3 class="widget-title">Newsletter</h3>
     <div class="newsletter-subtitle">Get Interesting News</div>
     <div class="newsletter-text">Receive the latest news via email.</div>
@@ -67,9 +77,9 @@
         <input class="newsletter-button" id="mc-embedded-subscribe" type="submit" name="subscribe" value="Subscribe">
       </div>
     </form>
-  </div>
+  </div> -->
 
-  {% if site.instafeed == true %}
+  <!-- {% if site.instafeed == true && site.instagram != "https://www.instagram.com/" %}
   <div class="widget widget-instagram">
     <h3 class="widget-title">Instagram</h3>
     <div class="instagram-box">
@@ -77,7 +87,7 @@
       <a class="instagram-prof" href="#">&#64;UserName</a>
     </div>
   </div>
-  {% endif %}
+  {% else %}{% endif %} -->
 
   <div class="widget widget-tags">
     <h3 class="widget-title">Tag Cloud</h3>

@@ -17,13 +17,14 @@ author-avatar: 09.jpg
 # Contact links
 facebook:  https://facebook.com/ # Add your Facebook handle
 twitter:   https://twitter.com/ # Add your Facebook handle
+github: https://github.com/Claessens14
 instagram: https://www.instagram.com/ # Add your Facebook handle
 pinterest: https://www.pinterest.com/ # Add your Facebook handle
 
 
 #-------------------------------
 # Comment Section (Disqus)
-disqus-identifier: mr-brown # Add your shortname for Disqus Comment. For example mr-brown
+disqus-identifier:  # Add your shortname for Disqus Comment. For example mr-brown
 
 
 #-------------------------------
