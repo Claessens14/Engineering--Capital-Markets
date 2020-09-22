@@ -348,43 +348,108 @@ var editor;
         )
       );
 
+      /*  Look through iframe data and find the Title of the graph image
+      */
+      function getTitle(iframe_str) {
+        if (iframe_str.match(/iframe/g)) {
+          iframe_str = iframe_str.replace(/'>tradingeconomics.com<\/a>/g, "");  //remove back
+          var arr_str = iframe_str.split("/")
+          var title_str = arr_str.pop(); //extract back piece
+          title_str = title_str.replace(/-/g, ' ');
+          title_str = title_str.replace(/\b\w/g, function(c) {  //upper case words
+            return c.toUpperCase();
+          });
+          return title_str;
+        } else {
+          console.log("Called getTitle, no iframe found, so return ''");
+          return "";
+        }
+      }
+
+      /* Look through iFrame data and find image url in the iframe. alter url with 'charts/' insert
+      */
+      function getUrl(iframe_str){
+        //<iframe src='https://d3fy651gv2fhd3.cloudfront.net/embed/?s=canlxemr&v=202009212200V20200908&d1=20150924&type=type=area&h=300&w=600' height='300' width='600'  frameborder='0' scrolling='no'></iframe><br />source: <a href='https://tradingeconomics.com/canada/unemployment-rate'>tradingeconomics.com</a>
+        if (iframe_str.match(/iframe/g)) {
+          var arr_str = iframe_str.split("' height='300' width='600'")
+        arr_str = arr_str[0].split("iframe src='")
+        return arr_str[1].replace(/embed/gi, "charts/embed")
+        } else {
+          console.log("Called getUrl, no iframe found, so return unaltered string")
+          return iframe_str;
+        }
+      }
+
       var media_click = (e, obj) => { 
+        //MAGNIFIC POPUP - https://dimsemenov.com/plugins/magnific-popup/
+        //Mixed medio types - https://codepen.io/dimsemenov/pen/vKrqs
+
+      //   {src: "<div class='white-popup'>Popup from HTML string<br><iframe src='https://tradingeconomics.com/embed/?s=canadaempper&v=202009212100v20200908&h=300&w=600&ref=/canada/employed-persons' height='300' width='600'  frameborder='0' scrolling='no'></iframe><br />source: <a href='https://tradingeconomics.com/canada/employed-persons'>tradingeconomics.com</a></div>", // HTML string
+      //   type: 'inline'
+      // },
+        
         //showMessage("Clicked on " + obj.part.data.key); 
         // if (obj.part.data.category == "ImageBlock" && obj.part.data.source)
         console.log(obj.part.data)  
         const diag = JSON.parse(myDiagram.model.toJson());
         var nodes = diag.nodeDataArray;
-        
+
         // INPUT
         // obj.part.data -> data
         // nodes[i] -> data
-        function makeItem(data) {
+        function makeItem(data, title) {
           if (data && data.video_source && data.video_source.match(/youtube||vimeo/g)) {
             return {
               src: data.video_source,
               type: 'iframe'
             }
           }
-          if (data && data.video_source && data.video_source.match(/iframe/g)) {
+          // if (data && data.video_source && data.video_source.match(/iframe/g)) {
+          //   return {
+          //     src: data.video_source,
+          //     type: 'inline'
+          //   }
+          // } 
+          //<h2 class="post-title" style="color: black">The most popular mistakes</h2>
+          
+          if (data && data.source && data.source.match(/iframe/g)){
+            // TODO -- TITLE COUDE DOES NOT WORK BECAUSE THE IMAGE URL DOES NOT CONTAIN THE TITLE, IT IS THE EMBEDDED IFRAME
+            //get the TITLE of the URL  -> obj
+            // var obj = data.source.split('/')
+            // obj = obj.pop();
+            // obj = obj.split('.jpg')
+            // obj = obj.shift();
+            // obj = obj.replace(/-/gi, ' ');  //Title of chart
+            // console.log(obj)
+            var h1 = getTitle(data.source)//(title == "" ) ? obj : title + " - " + obj;
+            h1 = (title == "" ) ? h1 : title + ": " + h1;
             return {
-              src: data.video_source,
+              src: "<div style='  position: relative;  background: #FFF;  padding: 40px;  width: auto;  margin: 20px auto;  text-align: center;'> <h1> "+ h1 +" </h1><br> <img src=" + getUrl(data.source) + "> </div>",
               type: 'inline'
             }
-          } 
+          }
           return {
             src: data.source,
             type: 'image'
           }
         }
-        var items_arr = [makeItem(obj.part.data)];
-        var title = ""
-        for (var i = 0; i < nodes.length; i++) {
+        
+        var title = "";
+        for (var i = 0; i < nodes.length; i++) {    //get the GROUP TITLE - return "" if null 
           if (nodes[i] && nodes[i]['key'] == obj.part.data.group)
             title = nodes[i]['text']
+          
+        }
+
+        var items_arr = [makeItem(obj.part.data, title)];
+        //Add other group nodes to the background
+        for (var i = 0; i < nodes.length; i++) {
           if (nodes[i] && (nodes[i]['category'] == "ImageBlock" || nodes[i]['category'] == "VideoBlock") && nodes[i]['group'] == obj.part.data.group && (nodes[i]['source'] || nodes[i]['video_source'])) {
-            items_arr.push(makeItem(nodes[i]))
+            items_arr.push(makeItem(nodes[i], title))
           }
         }
+
+        //set each one to the title
         for (var i = 0; i < items_arr.length; i++) {
           items_arr[i]['title'] = title
         }
@@ -423,14 +488,14 @@ var editor;
               new go.Binding("text").makeTwoWay()),
               Go(go.Picture,
                 { margin: 1, width: 15, height: 15, background: "#354D8F" },
-                new go.Binding("source").makeTwoWay(),
+                //new go.Binding("source").makeTwoWay(),
+                new go.Binding("source", "source", function(v) { return getUrl(v) }),
                 {
                 click: function(e, obj) {
                     media_click(e, obj)
                 }
               }
               ),
-
           ),
           // four named ports, one on each side:
           makePort("T", go.Spot.Top, go.Spot.TopSide, true, true, no_mouse_colour_bool=true),
@@ -942,7 +1007,7 @@ var editor;
   <!-- <link rel="stylesheet" href="/galada/assets/popup_assets_cp/stylesheets/magnific-popup.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/galada/assets/popup_assets_cp/javascripts/magnific-popup.js"></script> -->
-  
+
     <div id="sample">
     <span>
         <div class="mapping" style="width: 100%; display: flex; justify-content: space-between">
