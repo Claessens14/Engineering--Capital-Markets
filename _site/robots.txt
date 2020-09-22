@@ -1,1 +1,1 @@
-Sitemap: http://localhost:4000/galada/sitemap.xml
+Sitemap: http://localhost:4000/JacobClaessens/sitemap.xml
