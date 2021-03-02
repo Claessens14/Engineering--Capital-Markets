@@ -1,0 +1,173 @@
+
+Options
+  GDP
+Gdp
+Gdp Annual Growth Rate,https://tradingeconomics.com/canada/gdp-growth-annual
+Gdp Constant Prices
+Gdp From Agriculture
+Gdp From Construction
+Gdp From Manufacturing
+Gdp From Mining
+Gdp From Public Administration
+Gdp From Services
+Gdp From Transport
+Gdp From Utilities
+Gdp Growth Annualized
+Gdp Growth Rate
+Gdp Per Capita
+Gdp Per Capita Ppp
+Gross Fixed Capital Formation
+Gross National Product
+
+  Labour
+Adp Employment Change
+Average Hourly Earnings
+Employed Persons
+Employment Change
+Employment Rate
+Full Time Employment
+Job Vacancies
+Labor Force Participation Rate
+Labour Costs
+Minimum Wages
+Non Farm Payrolls
+Part Time Employment
+Population
+Productivity
+Retirement Age Men
+Retirement Age Women
+Unemployed Persons
+Unemployment Rate
+Wage Growth
+Wages
+Wages In Manufacturing
+Youth Unemployment Rate
+
+  Prices
+Consumer Price Index Cpi
+Core Consumer Prices
+Core Inflation Rate
+Cpi Housing Utilities
+Cpi Transportation
+Export Prices
+Food Inflation
+Gdp Deflator
+Import Prices
+Inflation Rate
+Inflation Rate Mom
+Producer Prices
+Producer Prices Change
+Wholesale Prices
+
+  Money
+Banks Balance Sheet
+Central Bank Balance Sheet
+Deposit Interest Rate
+Foreign Exchange Reserves
+Foreign Stock Investment
+Interbank Rate
+Interest Rate
+Loans To Private Sector
+Money Supply M0
+Money Supply M1
+Money Supply M2
+Money Supply M3
+Private Debt To Gdp
+
+  Trade
+Balance Of Trade
+Capital Flows
+Crude Oil Production
+Current Account
+Current Account To Gdp
+Exports
+Exports By Category
+Exports By Country
+External Debt
+Foreign Direct Investment
+Gold Reserves
+Imports
+Imports By Category
+Imports By Country
+Oil Exports
+Terms Of Trade
+Terrorism Index
+Tourist Arrivals
+Weapons Sales
+
+  Government
+Asylum Applications
+Credit Rating
+Fiscal Expenditure
+Government Budget
+Government Budget Value
+Government Debt
+Government Debt To Gdp
+Government Revenues
+Government Spending
+Holidays
+Military Expenditure
+
+  Business
+Bankruptcies
+Business Confidence
+Capacity Utilization
+Car Registrations
+Changes In Inventories
+Competitiveness Index
+Competitiveness Rank
+Corporate Profits
+Corruption Index
+Corruption Rank
+Crude Oil Rigs
+Ease Of Doing Business
+Industrial Production
+Industrial Production Mom
+Internet Speed
+Ip Addresses
+Leading Economic Index
+Manufacturing Pmi
+Manufacturing Production
+Manufacturing Sales
+Mining Production
+New Orders
+Steel Production
+Wholesale Sales
+
+  Consumer
+Bank Lending Rate
+Consumer Confidence
+Consumer Credit
+Consumer Spending
+Disposable Personal Income
+Gasoline Prices
+Households Debt To Gdp
+Households Debt To Income
+Personal Savings
+Private Sector Credit
+Retail Sales Ex Autos
+Retail Sales Mom
+Retail Sales Yoy
+
+  Housing
+Building Permits
+Home Ownership Rate
+Housing Index
+Housing Starts
+
+  Taxes
+Corporate Tax Rate
+Personal Income Tax Rate
+Sales Tax Rate
+Social Security Rate
+Social Security Rate For Companies
+Social Security Rate For Employees
+
+  Health
+Coronavirus Cases
+Coronavirus Deaths
+Coronavirus Recovered
+Hospital Beds
+Hospitals
+Medical Doctors
+Nurses

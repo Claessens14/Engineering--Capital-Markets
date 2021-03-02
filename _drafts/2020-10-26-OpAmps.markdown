@@ -1,0 +1,9 @@
+---
+layout: post
+title:  Op Amps
+date:   2020-10-26 14:03:40 +0300
+image:  circuits4.jpg
+tags:   [Engineering, Electrical Devices, Controls]
+---
+
+Ops Amp Operations 

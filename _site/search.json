@@ -1,67 +1,83 @@
 [
   
     {
-      "title"    : "The most popular mistakes",
+      "title"    : "Personal Privacy Overhaul",
       "category" : "",
-      "tags"     : "Lifehacks",
-      "url"      : "/JacobClaessens/the-most-popular-mistakes/",
-      "date"     : "2018-08-23 09:05:55 -0400"
+      "tags"     : "Engineering, Life Styke, and Privacy",
+      "url"      : "/PersonalPrivacyOverhaul/",
+      "date"     : "2021-02-04 05:08:40 -0500"
     } ,
   
     {
-      "title"    : "Night city lights",
+      "title"    : "Cheat Sheet - Python, Javascript, Swift",
       "category" : "",
-      "tags"     : "Cities",
-      "url"      : "/JacobClaessens/night-city-lights/",
-      "date"     : "2018-08-23 09:04:55 -0400"
+      "tags"     : "Engineering, Coding, Swift, Python, Javascript, and Node.js",
+      "url"      : "/PythonJavaScriptSwift/",
+      "date"     : "2021-02-02 05:01:40 -0500"
     } ,
   
     {
-      "title"    : "Premiere on Broadway",
+      "title"    : "Op Amps",
       "category" : "",
-      "tags"     : "Rest",
-      "url"      : "/JacobClaessens/premiere-on-broadway/",
-      "date"     : "2018-08-23 09:04:00 -0400"
+      "tags"     : "Engineering, Electrical Devices, and Controls",
+      "url"      : "/OpAmps/",
+      "date"     : "2020-10-26 07:03:40 -0400"
     } ,
   
     {
-      "title"    : "Abstraction as art",
+      "title"    : "Transitors and Mosfets",
       "category" : "",
-      "tags"     : "Art",
-      "url"      : "/JacobClaessens/abstraction-as-art/",
-      "date"     : "2018-08-23 09:03:50 -0400"
+      "tags"     : "Engineering, Electrical Devices, and Controls",
+      "url"      : "/TransitorsAndMosfets/",
+      "date"     : "2020-10-26 05:03:40 -0400"
     } ,
   
     {
-      "title"    : "The path to self-perfection",
+      "title"    : "Transitors and Mosfets",
       "category" : "",
-      "tags"     : "Life",
-      "url"      : "/JacobClaessens/the-path-to-self-perfection/",
-      "date"     : "2018-08-23 09:03:30 -0400"
+      "tags"     : "Engineering, Electrical Devices, and Controls",
+      "url"      : "/Capitors-Inductors/",
+      "date"     : "2020-10-26 05:03:40 -0400"
     } ,
   
     {
-      "title"    : "How to Plan a Camping Trip",
+      "title"    : "Understanding the Z-transform",
       "category" : "",
-      "tags"     : "Trip",
-      "url"      : "/JacobClaessens/how-to-plan-a-camping-trip/",
-      "date"     : "2018-08-23 09:03:00 -0400"
+      "tags"     : "Engineering, Signals, and Controls",
+      "url"      : "/Z-Transforms/",
+      "date"     : "2020-10-25 08:03:30 -0400"
     } ,
   
     {
-      "title"    : "Flower Care Guide",
+      "title"    : "Understanding RealTime Tasks",
       "category" : "",
-      "tags"     : "Guide and Flowers",
-      "url"      : "/JacobClaessens/flower-care-guide/",
-      "date"     : "2018-08-23 09:02:00 -0400"
+      "tags"     : "Engineering, RealTime Systems, and Computation",
+      "url"      : "/UnderstandingRealTimeTasks/",
+      "date"     : "2020-10-25 08:03:30 -0400"
     } ,
   
     {
-      "title"    : "Welcome to Jekyll!",
+      "title"    : "Transfer Functions and Signal Convolution",
       "category" : "",
-      "tags"     : "Jekyll",
-      "url"      : "/JacobClaessens/welcome-to-jekyll/",
-      "date"     : "2018-05-29 11:05:55 -0400"
+      "tags"     : "Engineering, Signals, and Controls",
+      "url"      : "/Signal-tf-Convolution/",
+      "date"     : "2020-10-25 08:03:30 -0400"
+    } ,
+  
+    {
+      "title"    : "Understanding Diodes and Zener Diodes",
+      "category" : "",
+      "tags"     : "Engineering, Electrical Devices, and Controls",
+      "url"      : "/Diodes-and-Zener-Diodes/",
+      "date"     : "2020-10-25 08:03:30 -0400"
+    } ,
+  
+    {
+      "title"    : "Active vs Passive Devices and the controls math behind them",
+      "category" : "",
+      "tags"     : "Engineering, Electrical Devices, Computation, and Controls",
+      "url"      : "/ActiveVpassive/",
+      "date"     : "2020-03-14 06:03:40 -0400"
     } 
   
 ]

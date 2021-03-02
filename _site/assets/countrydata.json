@@ -1,0 +1,89 @@
+{
+    "gdp" : [
+        {
+            "working" : true,
+            "ref": "gdp",
+            "title": "GDP",
+            "tag": "wgdp+",  
+            "max_letters": "4",
+            "chart_type": "column",
+            "url_sample": "https://tradingeconomics.com/canada/gdp",
+            "image_sample":"https://tradingeconomics.com/embed/?s=wgdpcana&projection=te&v=202101082300v20200908&h=300&w=600",
+            "projection": "projection=te",
+            "iframe" : "<iframe src='https://d3fy651gv2fhd3.cloudfront.net/embed/?s=wgdpcana&projection=te&v=202101082300V20200908&d1=19210204&type=type=column&h=300&w=600' height='300' width='600'  frameborder='0' scrolling='no'></iframe><br />source: <a href='https://tradingeconomics.com/canada/gdp'>tradingeconomics.com</a>",
+            "length" : [ 10, 25, 50, {"max" : 19210204}] 
+        }, 
+        {
+            "working" : false,
+            "ref": "gdp-growth-annual",
+            "title": "GDP Growth Annual",
+            "tag": "cge9yoy",
+            "max_letters": "",
+            "chart_type": "column",
+            "url_sample": "https://tradingeconomics.com/canada/gdp-growth-annual",
+            "image_sample":"https://d3fy651gv2fhd3.cloudfront.net/embed/?s=rge9yoy&v=202101082300V20200908&d1=20110113&type=type=column&h=300&w=600"
+        },             
+        {
+            "working" : true,
+            "ref": "gdp-per-capita",
+            "title": "GDP per Capita",
+            "tag": "+nygdppcapkd",
+            "max_letters": "3",
+            "chart_type": "column",
+            "url_sample": "https://tradingeconomics.com/canada/gdp-per-capita",
+            "image_sample":"https://tradingeconomics.com/embed/?s=cannygdppcapkd&v=202101082300v20200908&h=300&w=600&ref=/canada/gdp-per-capita",
+            "iframe" : "<iframe src='https://tradingeconomics.com/embed/?s=cannygdppcapkd&v=202101082300v20200908&h=300&w=600&ref=/canada/gdp-per-capita' height='300' width='600'  frameborder='0' scrolling='no'></iframe><br />source: <a href='https://tradingeconomics.com/canada/gdp-per-capita'>tradingeconomics.com</a>",
+            "length" : [ 10, 25, 50, {"max" : 19210204}]  
+        },             
+        {
+            "working" : true,
+            "ref": "",
+            "title": "",
+            "tag": "",
+            "max_letters": "",
+            "chart_type": "column",
+            "url_sample": "",
+            "image_sample":"",
+            "iframe" : "",
+            "length" : [ 3, 10, 25, {"max" : 19210205}]  
+        }
+    ],
+    "labour": [
+        {
+            "working" : true,
+            "ref": "",
+            "title": "",
+            "tag": "",
+            "max_letters": "",
+            "chart_type": "column",
+            "url_sample": "",
+            "image_sample":"",
+            "iframe" : "",
+            "length" : [ 10, 25, 50, {"max" : 19210204}]  
+        },        
+        {
+            "working" : true,
+            "ref": "",
+            "title": "",
+            "tag": "",
+            "max_letters": "",
+            "chart_type": "column",
+            "url_sample": "",
+            "image_sample":"",
+            "iframe" : "",
+            "length" : [ 10, 25, 50, {"max" : 19210204}]  
+        },        
+        {
+            "working" : true,
+            "ref": "",
+            "title": "",
+            "tag": "",
+            "max_letters": "",
+            "chart_type": "column",
+            "url_sample": "",
+            "image_sample":"",
+            "iframe" : "",
+            "length" : [ 10, 25, 50, {"max" : 19210204}]  
+        }
+    ]
+}
