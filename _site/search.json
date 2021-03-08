@@ -1,6 +1,30 @@
 [
   
     {
+      "title"    : "Student Living - Free Tier Hunting",
+      "category" : "",
+      "tags"     : "Engineering, Cloud, Student, and Free Tier",
+      "url"      : "/Student-Living-Free-Tier-Hunting/",
+      "date"     : "2021-02-05 07:03:30 -0500"
+    } ,
+  
+    {
+      "title"    : "How To Add Some Colour To Your Terminal",
+      "category" : "",
+      "tags"     : "Mac and Terminal",
+      "url"      : "/How-to-colour-your-terminal/",
+      "date"     : "2021-02-05 07:03:30 -0500"
+    } ,
+  
+    {
+      "title"    : "Assembling a team? Your going need some tools",
+      "category" : "",
+      "tags"     : "Engineering, Team, Development, DevOps, and Market Research",
+      "url"      : "/Building-a-team-Heres-what-you-need-to-know/",
+      "date"     : "2021-02-05 03:03:30 -0500"
+    } ,
+  
+    {
       "title"    : "Personal Privacy Overhaul",
       "category" : "",
       "tags"     : "Engineering, Life Styke, and Privacy",
@@ -17,59 +41,19 @@
     } ,
   
     {
-      "title"    : "Op Amps",
+      "title"    : "Run Pytorch on Mobile",
       "category" : "",
-      "tags"     : "Engineering, Electrical Devices, and Controls",
-      "url"      : "/OpAmps/",
-      "date"     : "2020-10-26 07:03:40 -0400"
+      "tags"     : "Engineering, Coding, Swift, Python, PyTorch, Machine Learning, and CoreML",
+      "url"      : "/RunPyTorchOnMobile/",
+      "date"     : "2021-02-02 03:07:40 -0500"
     } ,
   
     {
-      "title"    : "Transitors and Mosfets",
+      "title"    : "Best Apis for stock Bros",
       "category" : "",
-      "tags"     : "Engineering, Electrical Devices, and Controls",
-      "url"      : "/TransitorsAndMosfets/",
-      "date"     : "2020-10-26 05:03:40 -0400"
-    } ,
-  
-    {
-      "title"    : "Transitors and Mosfets",
-      "category" : "",
-      "tags"     : "Engineering, Electrical Devices, and Controls",
-      "url"      : "/Capitors-Inductors/",
-      "date"     : "2020-10-26 05:03:40 -0400"
-    } ,
-  
-    {
-      "title"    : "Understanding the Z-transform",
-      "category" : "",
-      "tags"     : "Engineering, Signals, and Controls",
-      "url"      : "/Z-Transforms/",
-      "date"     : "2020-10-25 08:03:30 -0400"
-    } ,
-  
-    {
-      "title"    : "Understanding RealTime Tasks",
-      "category" : "",
-      "tags"     : "Engineering, RealTime Systems, and Computation",
-      "url"      : "/UnderstandingRealTimeTasks/",
-      "date"     : "2020-10-25 08:03:30 -0400"
-    } ,
-  
-    {
-      "title"    : "Transfer Functions and Signal Convolution",
-      "category" : "",
-      "tags"     : "Engineering, Signals, and Controls",
-      "url"      : "/Signal-tf-Convolution/",
-      "date"     : "2020-10-25 08:03:30 -0400"
-    } ,
-  
-    {
-      "title"    : "Understanding Diodes and Zener Diodes",
-      "category" : "",
-      "tags"     : "Engineering, Electrical Devices, and Controls",
-      "url"      : "/Diodes-and-Zener-Diodes/",
-      "date"     : "2020-10-25 08:03:30 -0400"
+      "tags"     : "Engineering, APIs, Stocks, and biz",
+      "url"      : "/Best-Apis-For-Stock-Bros/",
+      "date"     : "2021-02-01 07:03:30 -0500"
     } ,
   
     {
