@@ -1,19 +1,11 @@
 [
   
     {
-      "title"    : "Interview Things to know",
-      "category" : "",
-      "tags"     : "",
-      "url"      : "/Interview-Question-Things-to-know/",
-      "date"     : "2021-03-08 07:03:30 -0500"
-    } ,
-  
-    {
       "title"    : "Student Living - Free Tier Hunting",
       "category" : "",
       "tags"     : "Engineering, Cloud, Student, and Free Tier",
       "url"      : "/Student-Living-Free-Tier-Hunting/",
-      "date"     : "2021-02-05 07:03:30 -0500"
+      "date"     : "2021-02-05 06:03:30 -0600"
     } ,
   
     {
@@ -21,23 +13,7 @@
       "category" : "",
       "tags"     : "Mac and Terminal",
       "url"      : "/How-to-colour-your-terminal/",
-      "date"     : "2021-02-05 07:03:30 -0500"
-    } ,
-  
-    {
-      "title"    : "TEMPLATE",
-      "category" : "",
-      "tags"     : "",
-      "url"      : "/TEMPLATE/",
-      "date"     : "2021-02-05 07:03:30 -0500"
-    } ,
-  
-    {
-      "title"    : "Maxout Productivity",
-      "category" : "",
-      "tags"     : "",
-      "url"      : "/Speed/",
-      "date"     : "2021-02-05 07:03:30 -0500"
+      "date"     : "2021-02-05 06:03:30 -0600"
     } ,
   
     {
@@ -45,47 +21,7 @@
       "category" : "",
       "tags"     : "Engineering, Team, Development, DevOps, and Market Research",
       "url"      : "/Building-a-team-Heres-what-you-need-to-know/",
-      "date"     : "2021-02-05 03:03:30 -0500"
-    } ,
-  
-    {
-      "title"    : "Personal Privacy Overhaul",
-      "category" : "",
-      "tags"     : "Engineering, Life Styke, and Privacy",
-      "url"      : "/PersonalPrivacyOverhaul/",
-      "date"     : "2021-02-04 05:08:40 -0500"
-    } ,
-  
-    {
-      "title"    : "Cheat Sheet - Python, Javascript, Swift",
-      "category" : "",
-      "tags"     : "Engineering, Coding, Swift, Python, Javascript, and Node.js",
-      "url"      : "/PythonJavaScriptSwift/",
-      "date"     : "2021-02-02 05:01:40 -0500"
-    } ,
-  
-    {
-      "title"    : "Run Pytorch on Mobile",
-      "category" : "",
-      "tags"     : "Engineering, Coding, Swift, Python, PyTorch, Machine Learning, and CoreML",
-      "url"      : "/RunPyTorchOnMobile/",
-      "date"     : "2021-02-02 03:07:40 -0500"
-    } ,
-  
-    {
-      "title"    : "Best Apis for stock Bros",
-      "category" : "",
-      "tags"     : "Engineering, APIs, Stocks, and biz",
-      "url"      : "/Best-Apis-For-Stock-Bros/",
-      "date"     : "2021-02-01 07:03:30 -0500"
-    } ,
-  
-    {
-      "title"    : "Active vs Passive Devices and the controls math behind them",
-      "category" : "",
-      "tags"     : "Engineering, Electrical Devices, Computation, and Controls",
-      "url"      : "/ActiveVpassive/",
-      "date"     : "2020-03-14 06:03:40 -0400"
+      "date"     : "2021-02-05 02:03:30 -0600"
     } 
   
 ]
