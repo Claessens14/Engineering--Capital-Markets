@@ -231,21 +231,39 @@
 				</div>
 
 				<div class="post-body">
-					<p>If you haven’t seen my getting started in pytorhc yet, chekc it out here.</p>
+					<h2 id="prerequisite">Prerequisite</h2>
+<ul>
+  <li>pyTorch - v1.5 or higher</li>
+  <li>xcode</li>
+</ul>
 
-<p>So in this deployment wild west, there are several options to do this. pytorch recommended method, pytorch to ONNX to coreml, pytorch to coreml (apple recommend).</p>
+<p>As of writing March 2020, this deployment wild west, there are several options to do this. pytorch recommended method, pytorch to ONNX to coreml, pytorch to coreml (apple recommend). <br />
+We are going do the pyTorch recommended method cause they have some good supporting docs and code for procedure.</p>
 
-<p>We are going do the pyTorch recommended method cause they have some good supporting docs and code for procedure.</p>
+<p>Before we get to loading the model on the phone we gotta properly save this model into something usuable for mobile.  We are going use this, as our reference trace  <a href="https://github.com/pytorch/ios-demo-app/blob/master/HelloWorld/trace_model.py">code</a> to save a model, note I edited it a bit below so use this.</p>
 
-<p>Before we get to loading the model on teh phone we gotta properly save this model into something usuable for mobile.</p>
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">import</span> <span class="nx">torch</span>
+<span class="k">import</span> <span class="nx">torchvision</span>
+<span class="k">from</span> <span class="nx">torch</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">mobile_optimizer</span> <span class="k">import</span> <span class="nx">optimize_for_mobile</span>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import pyTorch
+<span class="nx">model</span> <span class="o">=</span> <span class="nx">torchvision</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">mobilenet_v2</span><span class="p">(</span><span class="nx">pretrained</span><span class="o">=</span><span class="nx">True</span><span class="p">)</span>
+<span class="nx">model</span><span class="p">.</span><span class="kr">eval</span><span class="p">()</span>
+<span class="nx">example</span> <span class="o">=</span> <span class="nx">torch</span><span class="p">.</span><span class="nx">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>
+<span class="nx">traced_script_module</span> <span class="o">=</span> <span class="nx">torch</span><span class="p">.</span><span class="nx">jit</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">example</span><span class="p">)</span>
+<span class="nx">torchscript_model_optimized</span> <span class="o">=</span> <span class="nx">optimize_for_mobile</span><span class="p">(</span><span class="nx">traced_script_module</span><span class="p">)</span>
+<span class="nx">torchscript_model_optimized</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="s2">"model.pt"</span><span class="p">)</span></code></pre></figure>
 
+<h1 id="create-an-xcode-project">Create an XCode project</h1>
+<p>Then go to terminal and cd into it. I recommend open a code edittor for this part.</p>
 
+<p># Loading the Model
+ Looking at the pyTorch recommended project, we can see how they <a href="https://github.com/pytorch/ios-demo-app/blob/master/HelloWorld/HelloWorld/HelloWorld/ViewController.swift">load</a> the model.pt generated in the steps earlier.</p>
 
+<ul>
+  <li>look at quantization</li>
+  <li>look at lay fusion</li>
+</ul>
 
-
-</code></pre></div></div>
 
 					<ul class="social-profiles list-reset">
 						<!-- facebook:  https://facebook.com/ # Add your Facebook handle
@@ -340,6 +358,20 @@
     <div class="recent-posts">
       
       <div class="recent-header">
+        <a class="recent-image" href="/Interview-Question-Things-to-know/" style="background-image: url(/img/computer4.jpg)"></a>
+      </div>
+      
+      <div class="recent-content">
+        <h6 class="recent-title"><a href="/Interview-Question-Things-to-know/">Interview Things to know</a></h6>
+        <div class="recent-date">
+          <time datetime="2021-03-08T07:03:30-05:00">March 8, 2021</time>
+        </div>
+      </div>
+    </div>
+    
+    <div class="recent-posts">
+      
+      <div class="recent-header">
         <a class="recent-image" href="/Student-Living-Free-Tier-Hunting/" style="background-image: url(/img/bridge.jpg)"></a>
       </div>
       
@@ -368,27 +400,13 @@
     <div class="recent-posts">
       
       <div class="recent-header">
-        <a class="recent-image" href="/Building-a-team-Heres-what-you-need-to-know/" style="background-image: url(/img/stocks.jpg)"></a>
+        <a class="recent-image" href="/TEMPLATE/" style="background-image: url(/img/computer5.jpg)"></a>
       </div>
       
       <div class="recent-content">
-        <h6 class="recent-title"><a href="/Building-a-team-Heres-what-you-need-to-know/">Assembling a team? Your going need some tools</a></h6>
+        <h6 class="recent-title"><a href="/TEMPLATE/">TEMPLATE</a></h6>
         <div class="recent-date">
-          <time datetime="2021-02-05T03:03:30-05:00">February 5, 2021</time>
-        </div>
-      </div>
-    </div>
-    
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/PersonalPrivacyOverhaul/" style="background-image: url(/img/plane.jpg)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/PersonalPrivacyOverhaul/">Personal Privacy Overhaul</a></h6>
-        <div class="recent-date">
-          <time datetime="2021-02-04T05:08:40-05:00">February 4, 2021</time>
+          <time datetime="2021-02-05T07:03:30-05:00">February 5, 2021</time>
         </div>
       </div>
     </div>

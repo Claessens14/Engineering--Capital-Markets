@@ -6,7 +6,7 @@ image:  bridge.jpg
 tags:   [Engineering, Cloud, Student, Free Tier]
 ---
 
-Students are always looking for those sweet deals to save those money-reeennoos. Save the money, buy crypto, collect tendies, repeat.  However, in this transition faze of our lives from know-nothing freshman to master algo crypto investor that makes beats on the weekend. You must be wondering what sort of servers do I have available to me as  an broke student. Well here you go.
+Students are always looking for those sweet deals. Save the money, buy crypto, collect tendies, repeat.  However, in this transition faze of our lives from know-nothing freshmen to master algo crypto investors who makes beats on the weekend. You must be wondering what sort of servers do you have available to me as  an broke student. Well here you go.
 
 First let’s go with the options that don't need the credit card, because that’s annoying, and easy to accidentally run those up with these services when you are just learning. What we are going be looking at is app services / engines. These great because they are easy to deploy, cheap, and do the job. 
 
