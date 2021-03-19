@@ -1,3 +1,5 @@
+This Website is built with the jekyll framework. The Theme is [galada](http://artemsheludko.com/galada/welcome-to-jekyll/).
+
 # Engineering & Capital Markets (WIP) 🌓 
 [![Build Status](https://travis-ci.org/dwyl/esta.svg?branch=master)](https://capital-markets-engineering.uk.r.appspot.com/JacobClaessens/CapitalMarkets/)  
 Please Note this project is still a work in progress  
